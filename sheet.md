@@ -13,19 +13,27 @@ Full page: [README.md](README.md). Setup and common problems: [SETUP.md](SETUP.m
 
 1. Idle timeout not set yet on this account? First: [SETUP.md, step 1](SETUP.md#step-1---let-the-codespace-wait-for-you).
 2. Open the Codespace: **https://codespaces.new/Youth-AI-Lab/yal-workshop-rag** → **Create codespace**.
-3. Terminal 1: `workshop-login`, paste the key once, Enter → you see `Key OK`.
-4. Drag `my-work.zip` into the file list. Terminal 1: `workshop-start 2 --from my-work.zip`
+3. Terminal 1: `workshop-login`, paste the key once, Enter → you see `Key OK`. Then `workshop bare`
+   once. First time: keep the theme (Enter), Enter on the other screens; to trust the folder,
+   **↓** to `Yes, I trust this folder`, Enter. `Ctrl+C` twice.
+4. Drag `my-work.zip` into the file list (the newest: maybe `my-work (1).zip`, then its exact name
+   between quotes). Terminal 1: `workshop-start 2 --from my-work.zip` → check the `saved on` date
    (no save: `workshop-start 2`, and Feurisson becomes your system prompt).
 5. Open WebUI now starts in the background (about 4 to 5 minutes the first time): go on with
    Part 2. If `workshop-start` says `Open WebUI is not started`, do what it says. To follow it,
    terminal 2: `tail -f .workshop/openwebui-start.log`. It must say `READY` before Part 4.
    `Ctrl+C` stops following, not Open WebUI. Type the other commands in terminal 1.
+6. Row 12 of `test-questions.md` still empty? Write it now (its section **Question 12: your
+   territory**), then `replay bare 12`, `replay A 12`, `score bare 12`, `score A 12`.
 
 ## 2. Everything in the context (15 min)
 
-1. `workshop B`: ask question 10, look at the gauge (about half of the window). `Ctrl+C` twice.
+1. `workshop B` (first time: **↓** to `Yes, I trust this folder`, Enter; closed? type it again).
+   The gauge says `0 / 200k` until your first message. Ask question 10, look at the gauge (about half of the window).
+   `Ctrl+C` twice.
 2. Predict: which questions go up from A to B?
 3. `replay B`, then `score B` (Enter accepts the judge's score, or type 0, 1 or 2).
+4. Compare columns A and B. No column A (no save)? `replay A`, then `score A`, first.
 
 ## 3. Unplugged (15 min)
 

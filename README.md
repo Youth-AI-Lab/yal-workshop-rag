@@ -1,4 +1,4 @@
-# Workshop 2 - When knowledge overflows: everything in the context, then RAG
+# Workshop 2 - Everything in the context, then RAG
 
 ### Youth AI Lab (Erasmus+) - series "Customising a chatbot", workshop 2 of 5
 
@@ -41,8 +41,9 @@
 ### What you will be able to do by the end of this session
 
 In workshop 1, your chatbot got instructions, and it said "I don't know" to the precise
-questions: it had no documents. Today it gets all the knowledge of the kit: 17 summaries and
-20 official documents. The whole series answers one question: *what enters the model's context,
+questions: it had no documents. Today it gets all the knowledge of the kit (the files of the
+series, copied into the repository of each workshop): 17 summaries and 20 official documents. The
+whole series answers one question: *what enters the model's context,
 when, and who decides?* The question of the day is:
 
 > **Who picks the pieces?**
@@ -152,6 +153,8 @@ conversation with `workshop bare`, and open a second terminal.
    First command: workshop B
    ```
 
+   Check the date in the line `Restored from … (saved on …)`: it should be the end of workshop 1.
+
 `workshop-start 2` has started two things that take a few minutes: Open WebUI itself (the first
 time, a download of about 4.6 GB), then the cutting of the kit's documents into pieces of two
 sizes. In the Codespaces we measured, it was ready in about 4 minutes. You do not need to wait:
@@ -189,7 +192,10 @@ replay and score column B.
 
 - **Mode `B`**: your system prompt, plus all the summaries and all the readable copies of
   the documents, read at every message.
-- **The size of the knowledge**: about half of the context window, before your first question.
+- **The size of the knowledge**: about half of the context window, sent with your first question
+  (the gauge shows it after that message).
+  The context window is everything the model reads before it answers: here, at most 200,000
+  **tokens** (a token is a piece of a word).
 - **The cost of reading everything**: every message pays for all of it, again.
 
 ### What the model reads in mode B
@@ -217,6 +223,10 @@ price is paid at every message.
    workshop B
    ```
 
+   The first time, Claude Code asks again to trust this folder: press the **down arrow** to
+   choose `Yes, I trust this folder`, then **Enter**. The gauge then shows `0 / 200k`: it counts
+   what was sent at the last exchange, and nothing is sent yet. The kit goes with your first
+   message.
 2. Ask question 10: `How many hectares burnt outside the EU in 2025?`, and look at the gauge. At
    the rehearsal, it showed about **100,000 tokens out of 200,000** after this question: half of
    the window, almost all of it the kit.
@@ -244,7 +254,8 @@ price is paid at every message.
    score B
    ```
 
-4. **Compare columns A and B** in `scores.md`.
+4. **Compare columns A and B** in `scores.md`. No column A, because you started without a save?
+   Type `replay A`, then `score A`, first: with Feurisson, we measured 1 min 12 and $0.09.
 
 ### Think about it
 
@@ -501,6 +512,11 @@ B: answers and cost.
 3. **Compare columns B and RAG**, then the costs: $0.47 for B, about $0.14 for the RAG, as we
    measured.
 
+> ℹ️ **Note.** These costs are paid with the key of your pair. Other ways to pay for a model:
+> [OpenCode guide, five ways to pay for the model](https://github.com/Youth-AI-Lab/yal-opencode-guide#before-you-start-five-ways-to-pay-for-the-model).
+> A model on a computer of your organisation has no cost per question:
+> [local AI guide](https://github.com/Youth-AI-Lab/yal-local-ai-guide).
+
 > ℹ️ **Note.** The two columns do not use the same instructions. Column B uses your `AGENTS.md`.
 > The chatbot "Wildfire RAG (workshop kit)" does not read it: it has fixed instructions, the rules
 > of Feurisson (`examples/AGENTS.feurisson.md`) adapted to excerpts. If your `AGENTS.md` is very
@@ -567,7 +583,9 @@ help does not say how you would know that part was missed.
 > then [Step 4 - Try it](https://github.com/Youth-AI-Lab/yal-openwebui-guide#step-4---try-it),
 > to read the passages found), and on a computer of your organisation
 > ([local AI guide, What we measured](https://github.com/Youth-AI-Lab/yal-local-ai-guide#what-we-measured):
-> the same two failures, with local models).
+> the same two failures, with local models). In the chatbot of the Open WebUI guide, by default, the
+> model decides itself when to search (the line "Explored…" above its answer); here, Open WebUI
+> searched before every answer.
 
 **Next:** [Workshop 3 - Let it search, give it know-how](https://github.com/Youth-AI-Lab/yal-workshop-search). Open its own Codespace from that page, and
 bring `my-work.zip`.
