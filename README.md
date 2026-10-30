@@ -146,7 +146,8 @@ second terminal.
 
 `workshop-start 2` has started two things that take a few minutes: Open WebUI itself (the first
 time, a download of about 4.6 GB), then the cutting of the kit's documents into pieces of two
-sizes. You do not need to wait: Parts 2 and 3 do not use Open WebUI.
+sizes. In the Codespaces we measured, it was ready in about 4 minutes. You do not need to wait:
+Parts 2 and 3 do not use Open WebUI.
 
 3. **To see where it is**, type in your second terminal:
 
@@ -517,6 +518,9 @@ The common problems (key, Codespace, terminal) are in the
 
 **The log ends with `STOPPED: …`** - Read the message above it, then type, in a terminal:
 `openwebui start && openwebui sizes`.
+
+**`openwebui query --size 1000` gives no excerpt, after `READY`.** - It happened once in four
+starts in our tests, and a restart repaired it. Type `openwebui stop`, then `openwebui start`.
 
 **`Open WebUI is already being prepared.`** - `workshop-start 2` is still preparing it. Follow it
 with `tail -f .workshop/openwebui-start.log` and wait for `READY`.
