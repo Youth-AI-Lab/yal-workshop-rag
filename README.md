@@ -216,6 +216,8 @@ price is paid at every message.
 2. Ask question 10: `How many hectares burnt outside the EU in 2025?`, and look at the gauge. At
    the rehearsal, it showed about **100,000 tokens out of 200,000** after this question: half of
    the window, almost all of it the kit.
+
+   ![The gauge in mode B after question 10, in the red frame: 50% of context, 100.7k / 200k.](images/gauge-b.png)
 3. Read the answer. Does it see that two documents give different figures?
 4. Leave with **Ctrl+C twice**.
 
@@ -424,7 +426,15 @@ and 10. Then ask the questions to the model in Open WebUI.
 2. **New Chat**, then choose **Wildfire RAG 1000** in the message box, at the bottom right. Ask
    question 10. The list also shows **Wildfire RAG (workshop kit)**: it uses the same pieces of
    1000 as Wildfire RAG 1000, and `replay RAG` uses it in Part 6.
-3. Under the answer, click the sources: they are the excerpts that the model received.
+
+   ![The list of models of Open WebUI, opened from the message box. 1: Wildfire RAG 1000. 2: Wildfire RAG 2000. Wildfire RAG (workshop kit), at the top, is the one proposed.](images/rag-models.png)
+
+3. Under the answer, click **Sources** (with their number, for example `3 Sources`): it lists the
+   files that the excerpts came from. The grey labels in the text show which file each sentence
+   comes from.
+
+   ![An answer of Wildfire RAG 1000 to another question. 1: a grey label in the text, the file of this passage. 2: the button 3 Sources, opened on the list of the files.](images/rag-sources.png)
+
 4. **New Chat** with **Wildfire RAG 2000**, same question. Compare the two answers.
 
 We measured these two answers with the model of the workshop:
@@ -536,7 +546,10 @@ help does not say how you would know that part was missed.
 
 ### Save your work, fill in the exit card
 
-1. Type `workshop-save`, then right-click on `my-work.zip` → **Download**. Bring it to workshop 3.
+1. Type `workshop-save`, then right-click on `my-work.zip` → **Download...**. Bring it to workshop 3.
+
+   ![1: my-work.zip in the file list. 2: the item Download... of the menu that opens with a right-click.](images/download-zip.png)
+
    If your computer already has a `my-work.zip`, the new one may be called `my-work (1).zip`:
    bring the newest.
 2. Answer on the card of the facilitator, alone, in a few words:
