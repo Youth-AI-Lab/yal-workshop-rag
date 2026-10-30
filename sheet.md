@@ -11,11 +11,12 @@ Full page: [README.md](README.md). Setup and common problems: [SETUP.md](SETUP.m
 
 ## 1. Welcome (20 min)
 
-1. Open the Codespace: **https://codespaces.new/Youth-AI-Lab/yal-workshop-rag** → **Create codespace**.
-2. Terminal 1: `workshop-login`, paste the key once, Enter → you see `Key OK`.
-3. Drag `my-work.zip` into the file list. Terminal 1: `workshop-start 2 --from my-work.zip`
+1. Idle timeout not set yet on this account? First: [SETUP.md, step 1](SETUP.md#step-1---let-the-codespace-wait-for-you).
+2. Open the Codespace: **https://codespaces.new/Youth-AI-Lab/yal-workshop-rag** → **Create codespace**.
+3. Terminal 1: `workshop-login`, paste the key once, Enter → you see `Key OK`.
+4. Drag `my-work.zip` into the file list. Terminal 1: `workshop-start 2 --from my-work.zip`
    (no save: `workshop-start 2`, and Feurisson becomes your system prompt).
-4. Open WebUI now starts in the background (about 4 to 5 minutes the first time): go on with
+5. Open WebUI now starts in the background (about 4 to 5 minutes the first time): go on with
    Part 2. If `workshop-start` says `Open WebUI is not started`, do what it says. To follow it,
    terminal 2: `tail -f .workshop/openwebui-start.log`. It must say `READY` before Part 4.
    `Ctrl+C` stops following, not Open WebUI. Type the other commands in terminal 1.
