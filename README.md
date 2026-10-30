@@ -519,8 +519,9 @@ The common problems (key, Codespace, terminal) are in the
 **The log ends with `STOPPED: …`** - Read the message above it, then type, in a terminal:
 `openwebui start && openwebui sizes`.
 
-**`openwebui query --size 1000` gives no excerpt, after `READY`.** - It happened once in four
-starts in our tests, and a restart repaired it. Type `openwebui stop`, then `openwebui start`.
+**`The search still finds nothing in …`** (in the log), or a base gives no excerpt. - At the end
+of its preparation, Open WebUI checks each base with a test search, and restarts once if a base
+finds nothing. If that is not enough, type `openwebui stop`, then `openwebui start`.
 
 **`Open WebUI is already being prepared.`** - `workshop-start 2` is still preparing it. Follow it
 with `tail -f .workshop/openwebui-start.log` and wait for `READY`.
