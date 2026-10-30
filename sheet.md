@@ -1,0 +1,53 @@
+# Workshop 2 - Everything in the context, then RAG (one page)
+
+**Question of the day: who picks the pieces?**
+Full page: [README.md](README.md). Setup and common problems: [SETUP.md](SETUP.md).
+
+| Score | When |
+|---|---|
+| **2** | Right, and it says where it comes from (7 and 9: saying "I don't know" or refusing is right). |
+| **1** | Honest but not enough: "I don't know" although the answer exists, no source, or partly right. |
+| **0** | Wrong or invented. |
+
+## 1. Welcome (20 min)
+
+1. Open the Codespace: **https://codespaces.new/Youth-AI-Lab/yal-workshop-rag** → **Create codespace**.
+2. Terminal 1: `workshop-login`, paste the key once, Enter → you see `Key OK`.
+3. Drag `my-work.zip` into the file list. Terminal 1: `workshop-start 2 --from my-work.zip`.
+4. Open WebUI starts by itself. Terminal 2: `tail -f .workshop/openwebui-start.log`, wait for `READY`.
+
+## 2. Everything in the context (15 min)
+
+1. `workshop B`: ask question 10, look at the gauge (about half of the window). `Ctrl+C` twice.
+2. Predict: which questions go up from A to B?
+3. `replay B`, then `score B` (Enter accepts the judge's score, or type 0, 1 or 2).
+
+## 3. Unplugged (15 min)
+
+Two pairs, one envelope of strips. Pair 1 is the search engine: it passes 3 strips (round 1) or
+2 strips (round 2). Pair 2 is the model: it answers with these strips only. Questions 10 and 7.
+
+## 4. Pieces and embeddings (20 min)
+
+1. `openwebui query "How many hectares burnt outside the EU in 2025?"` → read the 5 excerpts.
+2. The same for question 7 (Campania 2025) and question 3 (Bouches-du-Rhône).
+
+## 5. Change the settings (20 min)
+
+1. `openwebui query --size 2000 "…"` and `openwebui query --size 1000 --top-k 10 "…"` for question 10.
+2. Open WebUI (Ports → 3000): question 10 to **Wildfire RAG 1000**, then to **Wildfire RAG 2000**.
+   Click the sources.
+3. `openwebui top-k 10` to try, then **`openwebui top-k 5`** before Part 6.
+
+## 6. RAG against B (10 min)
+
+`replay RAG`, then `score RAG`. Compare columns B and RAG, and the costs.
+
+## 7. Closing (10 min)
+
+1. When is a RAG a good choice? What failure does it hide?
+2. `workshop-save` → right-click on `my-work.zip` → **Download**. Bring it to workshop 3.
+3. Exit card: three answers, alone.
+
+**Leave a conversation:** `Ctrl+C` twice. **Copy / paste in the terminal:** `Ctrl+Shift+C` /
+`Ctrl+Shift+V` (`Cmd+C` / `Cmd+V` on a Mac). **Never make port 3000 public.**
