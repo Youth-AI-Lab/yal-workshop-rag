@@ -38,7 +38,8 @@
 
 In workshop 1, your chatbot got instructions, and it said "I don't know" to the precise
 questions: it had no documents. Today it gets all the knowledge of the kit: 17 summaries and
-20 official documents. The question of the day is:
+20 official documents. The whole series answers one question: *what enters the model's context,
+when, and who decides?* The question of the day is:
 
 > **Who picks the pieces?**
 
@@ -89,7 +90,7 @@ The series goes on, one piece of the chatbot at a time:
 
 You need the same as in workshop 1: no programming, a little English, two people per screen.
 **Bring `my-work.zip`**, the file you saved at the end of workshop 1. Without it, the kit's example
-(Feurisson) becomes your system prompt, and you start columns B and RAG from there. More in
+(Feurisson) becomes your system prompt, and you start column B from there. More in
 [SETUP.md, Before you start](SETUP.md#before-you-start).
 
 ### Reference documents
@@ -112,8 +113,8 @@ its two knowledge bases in the background while you work.
 ### Step 1 - Open your Codespace and save your key
 
 Follow [SETUP.md](SETUP.md#setup), steps 1 to 5, with the link at the top of this page: open the
-Codespace, let it wait for you, save your key with `workshop-login`, check `Key OK`, and open a
-second terminal.
+Codespace, let it wait for you, save your key with `workshop-login`, check `Key OK`, have a first
+conversation with `workshop bare`, and open a second terminal.
 
 > 💡 **If you use OpenCode.** Same commands, after `workshop-login --engine opencode`. The judge of
 > `score` and Open WebUI need an Anthropic key (`sk-ant-`). The
@@ -125,7 +126,10 @@ second terminal.
 
 ### Step 2 - Bring back your work, and start Open WebUI
 
-1. **Drag `my-work.zip`** from your computer into the file list of the Codespace.
+1. **Drag `my-work.zip`** from your computer into the file list of the Codespace. If you
+   downloaded it more than once, your browser may have named the newest one `my-work (1).zip`:
+   drag that one, and type its exact name between quotes, for example
+   `workshop-start 2 --from "my-work (1).zip"`.
 2. In your first terminal, type:
 
    ```bash
@@ -158,8 +162,14 @@ Parts 2 and 3 do not use Open WebUI.
    The last line is `READY: Open WebUI is ready, with the two sizes.` when it is done. Press
    **Ctrl+C** to stop following: Open WebUI keeps running.
 
-> 🚫 **Warning.** **Never make port 3000 public** (Ports tab, Port Visibility). This Open WebUI has
-> no accounts: anyone with the link could use your key.
+> 💡 **Tip.** Row 12 of `test-questions.md` still empty? Follow its section **Question 12: your
+> territory** now: write the question, and the expected answer with its source. Then type
+> `replay bare 12` and `replay A 12`, and score them with `score bare 12` and `score A 12`.
+
+> 🚫 **Warning.** Open WebUI is reached through **port 3000** of your Codespace: a numbered door,
+> listed in the **Ports** tab next to the terminal. It is private: only you can open it. **Never
+> make port 3000 public** (Ports tab, right-click on 3000, Port Visibility). This Open WebUI has no
+> accounts: anyone with the link could use your key.
 
 > 💡 **Tip.** **Checkpoint**: `Key OK`, `Ready for workshop 2`, and the log of Open WebUI growing in
 > the second terminal.
@@ -219,8 +229,8 @@ price is paid at every message.
    replay B
    ```
 
-   At the rehearsal: 1 min 35, and **$0.47**, about seven times the cost of mode A, because every
-   question sends the whole kit again.
+   At the rehearsal: 1 min 35, and **$0.47**, about five times the $0.09 of mode A in workshop 1,
+   because every question sends the whole kit again.
 3. Score with the help of the judge. This time it proposes a score, and you accept it (Enter)
    or correct it (0, 1 or 2):
 
@@ -291,8 +301,9 @@ even when the answer exists nowhere.
 
 ### What you will discover
 
-- **Chunks**: Open WebUI cut the 37 files of the kit into pieces of about 1,000 characters (a
-  short paragraph), before any question.
+- **Chunks**: Open WebUI cut the 37 files of the kit into pieces of **at most** 1,000 characters
+  (a short paragraph), before any question. It cuts at the end of a paragraph, so most pieces are
+  shorter: the excerpts we measured had 770 characters on average.
 - **Embeddings**: a small model turns each piece, and each question, into a list of numbers. Two
   texts with close meanings get close numbers. The search engine compares these numbers.
 - **Top-k**: the number of pieces the model receives for each question. Here, 5.
@@ -336,8 +347,14 @@ of the documents. A RAG is only as good as the pieces it picks.
    summary 10) there? And the 2.2 million of summary 90?
 4. Do the same for question 7 (`How many hectares burnt in Campania in 2025?`). The answer
    exists nowhere. How many excerpts come back?
-5. Do the same for question 3 (Bouches-du-Rhône). Look at the name of each excerpt: is the
-   article of `corpus/text/43` that answers there, or only the start of the document?
+5. Do the same for question 3:
+
+   ```bash
+   openwebui query "In Bouches-du-Rhône, at which fire-risk levels is access to forest massifs forbidden, and at the 'severe' level, when is work allowed?"
+   ```
+
+   Look at the name of each excerpt: is the article of `corpus/text/43` that answers there, or
+   only the start of the document?
 
 **What we measured** (without the model, on the kit): for question 3, the pieces of document 43
 came from its first page, never from the article that answers, at every size. For question 7,
@@ -356,8 +373,9 @@ and 10. Then ask the questions to the model in Open WebUI.
 
 ### What you will discover
 
-- **Two bases**: the same 37 files, cut into pieces of 1000 and of 2000 characters.
-  `workshop-start 2` prepared both.
+- **Two bases**: the same 37 files, cut into pieces of at most 1000 and at most 2000 characters
+  (the excerpts we measured had 770 and 1146 on average: many summaries are shorter than 2000). `workshop-start 2` prepared
+  both.
 - **`--top-k`**: more pieces for one search.
 - **`openwebui top-k N`**: more pieces in the chat, from the next question, for every "Wildfire
   RAG" model.
@@ -387,24 +405,37 @@ and 10. Then ask the questions to the model in Open WebUI.
 2. Both figures come back here too, as we measured. **What matters is what the pieces contain**:
    bigger pieces, or more of them, can both bring the answer. Both also send more text to the
    model at every question.
-3. Try `--size 2000` and `--top-k 10` on question 3. Does anything bring back the article that
-   answers?
+3. Try question 3 with bigger pieces, then with more pieces:
+
+   ```bash
+   openwebui query --size 2000 "In Bouches-du-Rhône, at which fire-risk levels is access to forest massifs forbidden, and at the 'severe' level, when is work allowed?"
+   ```
+
+   ```bash
+   openwebui query --size 1000 --top-k 10 "In Bouches-du-Rhône, at which fire-risk levels is access to forest massifs forbidden, and at the 'severe' level, when is work allowed?"
+   ```
+
+   Does anything bring back the article that answers?
 
 #### Step 3 - Ask the model, in Open WebUI
 
 1. Open the address given in `.workshop/openwebui-start.log` (`Ctrl` + click), or the **Ports**
    tab → `3000` → **Open in Browser**.
 2. **New Chat**, then choose **Wildfire RAG 1000** in the message box, at the bottom right. Ask
-   question 10.
+   question 10. The list also shows **Wildfire RAG (workshop kit)**: it uses the same pieces of
+   1000 as Wildfire RAG 1000, and `replay RAG` uses it in Part 6.
 3. Under the answer, click the sources: they are the excerpts that the model received.
 4. **New Chat** with **Wildfire RAG 2000**, same question. Compare the two answers.
 
 We measured these two answers with the model of the workshop:
 
 - **Pieces of 1000**: the answer subtracts the EU from the total (about 1 162 657 hectares), says
-  that this is its own calculation, and hesitates about the 2.2 million. The judge gave 1.
-- **Pieces of 2000**: the answer gives 1 092 095 + 70 562 hectares, and writes that "the sources
-  disagree" with the 2.2 million. The judge gave 2.
+  that this is its own calculation, and sees that the 2.2 million disagrees. But it "can't tell
+  which reading is correct": the figure of 1 092 095 hectares is not in its excerpts. The judge
+  gave 1.
+- **Pieces of 2000**: the answer gives 1 092 095 + 70 562 hectares, writes that "the sources
+  disagree", and explains why: "The figures add up only if the 2.2 million includes the EU". The
+  judge gave 2.
 
 5. If you want, give the chat 10 excerpts, ask again with **Wildfire RAG 1000**, then **set it back
    to 5** before Part 6:
@@ -440,9 +471,12 @@ B: answers and cost.
    replay RAG
    ```
 
-   Each question goes to the chatbot "Wildfire RAG (workshop kit)" of Open WebUI, in a new
-   conversation. Under each answer, the file shows which documents the excerpts came from. We
-   measured 3 to 10 seconds per question, and about **$0.14** for 11 questions.
+   Each question goes to the chatbot "Wildfire RAG (workshop kit)" of Open WebUI (the same pieces
+   of 1000 as Wildfire RAG 1000), in a new conversation. The answers go into a new file of the
+   folder `answers/`: the line that starts with `Answers:`, near the end, gives its name, for example
+   `Answers: answers/RAG-15h20.md`. Open it: under each answer, it shows which documents the
+   excerpts came from. We measured 3 to 11 seconds per question, and about **$0.14** for 11
+   questions.
 2. Score it, with the help of the judge:
 
    ```bash
@@ -452,6 +486,12 @@ B: answers and cost.
    A column **RAG** appears in `scores.md`, after column B.
 3. **Compare columns B and RAG**, then the costs: $0.47 for B, about $0.14 for the RAG, as we
    measured.
+
+> ℹ️ **Note.** The two columns do not use the same instructions. Column B uses your `AGENTS.md`.
+> The chatbot "Wildfire RAG (workshop kit)" does not read it: it has fixed instructions, the rules
+> of Feurisson (`examples/AGENTS.feurisson.md`) adapted to excerpts. If your `AGENTS.md` is very
+> different from Feurisson, part of a difference can come from the instructions, not from the
+> pieces.
 
 What we measured, with the judge: 18 out of 22 for the RAG of 1000, 19 out of 22 for the
 one of 2000. Question 7 got 2 at both sizes: the model said that the excerpts did not contain the
@@ -484,18 +524,21 @@ Their help pages, read on 2026-10-29, say:
 
 - **Claude Projects**, on paid plans: when the knowledge of a project "approaches the context
   window limit, Claude will automatically enable RAG mode", with "a visual indicator", and you
-  cannot choose. ([Claude help centre](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects))
+  see Claude "using a project knowledge search tool". You cannot choose. ([Claude help centre](https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects))
 - **Gemini**: going beyond the context window "could lead to responses that don't take into
   account all the content provided or miss connections or details". No switch to a search is
   documented.
   ([Google help](https://support.google.com/gemini/answer/16275805?hl=en))
 
 So the same *Knowledge* box can read everything, search for pieces, or miss part of it, depending
-on its size and the tool. You cannot see which from the outside.
+on its size and the tool. Claude Projects shows when it searches, but you do not choose. Gemini's
+help does not say how you would know that part was missed.
 
 ### Save your work, fill in the exit card
 
 1. Type `workshop-save`, then right-click on `my-work.zip` → **Download**. Bring it to workshop 3.
+   If your computer already has a `my-work.zip`, the new one may be called `my-work (1).zip`:
+   bring the newest.
 2. Answer on the card of the facilitator, alone, in a few words:
    1. Who picks the pieces in a RAG, and when?
    2. Name one question where the size or the number of pieces changed the answer.
@@ -521,7 +564,8 @@ The common problems (key, Codespace, terminal) are in the
 
 **`The search still finds nothing in …`** (in the log), or a base gives no excerpt. - At the end
 of its preparation, Open WebUI checks each base with a test search, and restarts once if a base
-finds nothing. If that is not enough, type `openwebui stop`, then `openwebui start`.
+finds nothing. If that is not enough, type `openwebui stop`, then
+`openwebui start && openwebui sizes`.
 
 **`Open WebUI is already being prepared.`** - `workshop-start 2` is still preparing it. Follow it
 with `tail -f .workshop/openwebui-start.log` and wait for `READY`.

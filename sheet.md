@@ -13,8 +13,12 @@ Full page: [README.md](README.md). Setup and common problems: [SETUP.md](SETUP.m
 
 1. Open the Codespace: **https://codespaces.new/Youth-AI-Lab/yal-workshop-rag** → **Create codespace**.
 2. Terminal 1: `workshop-login`, paste the key once, Enter → you see `Key OK`.
-3. Drag `my-work.zip` into the file list. Terminal 1: `workshop-start 2 --from my-work.zip`.
-4. Open WebUI starts by itself. Terminal 2: `tail -f .workshop/openwebui-start.log`, wait for `READY`.
+3. Drag `my-work.zip` into the file list. Terminal 1: `workshop-start 2 --from my-work.zip`
+   (no save: `workshop-start 2`, and Feurisson becomes your system prompt).
+4. Open WebUI now starts in the background (about 4 to 5 minutes the first time): go on with
+   Part 2. If `workshop-start` says `Open WebUI is not started`, do what it says. To follow it,
+   terminal 2: `tail -f .workshop/openwebui-start.log`. It must say `READY` before Part 4.
+   `Ctrl+C` stops following, not Open WebUI. Type the other commands in terminal 1.
 
 ## 2. Everything in the context (15 min)
 
@@ -29,24 +33,30 @@ Two pairs, one envelope of strips. Pair 1 is the search engine: it passes 3 stri
 
 ## 4. Pieces and embeddings (20 min)
 
-1. `openwebui query "How many hectares burnt outside the EU in 2025?"` → read the 5 excerpts.
+1. Check that the log says `READY`. Terminal 1:
+   `openwebui query "How many hectares burnt outside the EU in 2025?"` → read the 5 excerpts.
 2. The same for question 7 (Campania 2025) and question 3 (Bouches-du-Rhône).
 
 ## 5. Change the settings (20 min)
 
-1. `openwebui query --size 2000 "…"` and `openwebui query --size 1000 --top-k 10 "…"` for question 10.
+1. Question 10 with bigger pieces: `openwebui query --size 2000 "How many hectares burnt outside the EU in 2025?"`,
+   then with more pieces: `openwebui query --size 1000 --top-k 10 "How many hectares burnt outside the EU in 2025?"`.
 2. Open WebUI (Ports → 3000): question 10 to **Wildfire RAG 1000**, then to **Wildfire RAG 2000**.
    Click the sources.
-3. `openwebui top-k 10` to try, then **`openwebui top-k 5`** before Part 6.
+3. Optional: `openwebui top-k 10`, question 10 again to **Wildfire RAG 1000**. Then
+   **`openwebui top-k 5`** before Part 6 (`replay RAG` refuses otherwise).
 
 ## 6. RAG against B (10 min)
 
-`replay RAG`, then `score RAG`. Compare columns B and RAG, and the costs.
+`replay RAG` (it asks **Wildfire RAG (workshop kit)**, the same base as Wildfire RAG 1000), then
+`score RAG`. Compare columns B and RAG, and the costs.
 
 ## 7. Closing (10 min)
 
 1. When is a RAG a good choice? What failure does it hide?
-2. `workshop-save` → right-click on `my-work.zip` → **Download**. Bring it to workshop 3.
+2. `workshop-save` → right-click on `my-work.zip` → **Download**. Bring it to workshop 3. If your
+   computer already has one, the new one may be called `my-work (1).zip`: bring the newest, and
+   next time type its exact name between quotes after `--from`.
 3. Exit card: three answers, alone.
 
 **Leave a conversation:** `Ctrl+C` twice. **Copy / paste in the terminal:** `Ctrl+Shift+C` /
