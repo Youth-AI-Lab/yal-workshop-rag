@@ -54,7 +54,7 @@ Two pairs, one envelope of strips. Pair 1 is the search engine: it passes 3 stri
 ## 7. Closing (10 min)
 
 1. When is a RAG a good choice? What failure does it hide?
-2. `workshop-save` → right-click on `my-work.zip` → **Download**. Bring it to workshop 3. If your
+2. `workshop-save` → right-click on `my-work.zip` → **Download...**. Bring it to [workshop 3](https://github.com/Youth-AI-Lab/yal-workshop-search). If your
    computer already has one, the new one may be called `my-work (1).zip`: bring the newest, and
    next time type its exact name between quotes after `--from`.
 3. Exit card: three answers, alone.

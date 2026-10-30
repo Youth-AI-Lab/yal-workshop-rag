@@ -5,6 +5,7 @@
 - **Project:** Youth AI Lab (Erasmus+), with five partners: L.A.B. (Aix-en-Provence, France),
   UAB (Barcelona, Spain), Perlatecnica (Naples, Italy), Digitale Wolven (Antwerp, Belgium),
   CSC Vent des Îles (La Rochelle, France).
+- **The series:** [the five workshops](https://github.com/Youth-AI-Lab/yal-workshop-kit#the-series)
 - **Need help?**
   - Raise your hand and ask the facilitator.
   - If something breaks, don't panic: your files stay in the Codespace.
@@ -564,6 +565,9 @@ help does not say how you would know that part was missed.
 > to read the passages found), and on a computer of your organisation
 > ([local AI guide, What we measured](https://github.com/Youth-AI-Lab/yal-local-ai-guide#what-we-measured):
 > the same two failures, with local models).
+
+**Next:** [Workshop 3 - Let it search, give it know-how](https://github.com/Youth-AI-Lab/yal-workshop-search). Open its own Codespace from that page, and
+bring `my-work.zip`.
 
 ---
 
