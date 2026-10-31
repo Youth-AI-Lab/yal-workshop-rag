@@ -156,7 +156,7 @@ conversation with `workshop bare`, and open a second terminal.
    Check the date in the line `Restored from … (saved on …)`: it should be the end of workshop 1.
 
 `workshop-start 2` has started two things that take a few minutes: Open WebUI itself (the first
-time, a download of about 4.6 GB), then the cutting of the kit's documents into pieces of two
+time, a download of about 1.6 GB), then the cutting of the kit's documents into pieces of two
 sizes. In the Codespaces we measured, it was ready in about 4 minutes. You do not need to wait:
 Parts 2 and 3 do not use Open WebUI.
 
