@@ -32,8 +32,11 @@ Full page: [README.md](README.md). Setup and common problems: [SETUP.md](SETUP.m
    The gauge says `0 / 200k` until your first message. Ask question 10, look at the gauge (about half of the window).
    `Ctrl+C` twice.
 2. Predict: which questions go up from A to B?
-3. `replay B`, then `score B` (Enter accepts the judge's score, or type 0, 1 or 2).
-4. Compare columns A and B. No column A (no save)? `replay A`, then `score A`, first.
+3. `replay B`, then `score B 3 7 10` (Enter accepts the judge's score, or type 0, 1 or 2).
+   If you have time: `score B 1 2 4 5 6 8 9 11 12` (no question 12: leave out the 12).
+   One minute left: `score B 11 12` (workshop 3 uses them).
+4. Compare columns A and B on 3, 7 and 10; the totals only if both columns are complete.
+   No column A (no save)? `replay A`, then `score A`, first.
 
 ## 3. Unplugged (15 min)
 
@@ -58,7 +61,9 @@ Two pairs, one envelope of strips. Pair 1 is the search engine: it passes 3 stri
 ## 6. RAG against B (10 min)
 
 `replay RAG` (it asks **Wildfire RAG (workshop kit)**, the same base as Wildfire RAG 1000), then
-`score RAG`. Compare columns B and RAG, and the costs.
+`score RAG 3 7 10`. If you have time: `score RAG 1 2 4 5 6 8 9 11 12`; one minute left:
+`score RAG 11 12` (workshop 3 uses them). Compare columns B and RAG on 3, 7 and 10 (the totals
+only if both columns are complete), and the costs.
 
 ## 7. Closing (10 min)
 

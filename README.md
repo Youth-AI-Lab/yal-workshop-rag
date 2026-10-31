@@ -247,15 +247,27 @@ price is paid at every message.
 
    At the rehearsal: 1 min 35, and **$0.47**, about five times the $0.09 of mode A in workshop 1,
    because every question sends the whole kit again.
-3. Score with the help of the judge. This time it proposes a score, and you accept it (Enter)
-   or correct it (0, 1 or 2):
+3. Score the three questions of today with the help of the judge. This time it proposes a score,
+   and you accept it (Enter) or correct it (0, 1 or 2):
 
    ```bash
-   score B
+   score B 3 7 10
    ```
 
-4. **Compare columns A and B** in `scores.md`. No column A, because you started without a save?
-   Type `replay A`, then `score A`, first: with Feurisson, we measured 1 min 12 and $0.09.
+   If you have time, score the other questions too (no question 12: leave out the 12):
+
+   ```bash
+   score B 1 2 4 5 6 8 9 11 12
+   ```
+
+   > ℹ️ **Note.** `score B` without numbers scores all the questions again, also 3, 7 and 10:
+   > give the numbers. Workshop 3 compares questions 11 and 12 with column B: if you only have a
+   > minute, score these two first, with `score B 11 12`.
+
+4. **Compare columns A and B** in `scores.md`, for questions 3, 7 and 10, and with your prediction.
+   Compare the two totals only if both columns have all their questions scored. No column A,
+   because you started without a save? Type `replay A`, then `score A`, first: with Feurisson, we
+   measured 1 min 12 and $0.09 (before its last two rules were added).
 
 ### Think about it
 
@@ -502,15 +514,25 @@ B: answers and cost.
    `Answers: answers/RAG-15h20.md`. Open it: under each answer, it shows which documents the
    excerpts came from. We measured 3 to 11 seconds per question, and about **$0.14** for 11
    questions.
-2. Score it, with the help of the judge:
+2. Score questions 3, 7 and 10, with the help of the judge:
 
    ```bash
-   score RAG
+   score RAG 3 7 10
    ```
 
-   A column **RAG** appears in `scores.md`, after column B.
-3. **Compare columns B and RAG**, then the costs: $0.47 for B, about $0.14 for the RAG, as we
-   measured.
+   A column **RAG** appears in `scores.md`, after column B. If you have time, score the other
+   questions too (no question 12: leave out the 12):
+
+   ```bash
+   score RAG 1 2 4 5 6 8 9 11 12
+   ```
+
+   > ℹ️ **Note.** Workshop 3 compares questions 11 and 12 with columns B and RAG: if you only
+   > have a minute, score these two first, with `score RAG 11 12`.
+
+3. **Compare columns B and RAG** for questions 3, 7 and 10, then the costs: $0.47 for B, about
+   $0.14 for the RAG, as we measured. Compare the two totals only if both columns have all their
+   questions scored.
 
 > ℹ️ **Note.** These costs are paid with the key of your pair. Other ways to pay for a model:
 > [OpenCode guide, five ways to pay for the model](https://github.com/Youth-AI-Lab/yal-opencode-guide#before-you-start-five-ways-to-pay-for-the-model).
@@ -528,8 +550,8 @@ one of 2000. Question 7 got 2 at both sizes: the model said that the excerpts di
 answer, although it always got 5. Question 3 got 1 at both sizes: the article that answers was
 never in the excerpts.
 
-> 💡 **Tip.** **Checkpoint**: columns B and RAG are scored, and you can name one question where the
-> pieces made the difference.
+> 💡 **Tip.** **Checkpoint**: questions 3, 7 and 10 are scored in columns B and RAG, and you can name
+> one question where the pieces made the difference.
 
 ---
 
@@ -626,4 +648,4 @@ Texts and screenshots: [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt). Configuration 
 [EUPL-1.2](LICENSES/EUPL-1.2.txt). The official documents are not ours and are not covered: see
 [their note](LICENSES/LicenseRef-Third-Party.txt) and [`REUSE.toml`](REUSE.toml).
 
-*Youth AI Lab (Erasmus+) - Workshop 2 of the series "Customising a chatbot" - 2026*
+*Youth AI Lab (Erasmus+) - Workshop 2 of the series "Build your own chatbot" - 2026*
