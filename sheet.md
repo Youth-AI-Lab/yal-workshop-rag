@@ -45,9 +45,11 @@ Two pairs, one envelope of strips. Pair 1 is the search engine: it passes 3 stri
 
 ## 4. Pieces and embeddings (20 min)
 
-1. Check that the log says `READY`. Terminal 1:
+1. In the page, sort the pairs of texts by closeness, then open the scores. Forbidden and allowed
+   are almost the same for the search: it finds what a text is about, not what is true.
+2. Check that the log says `READY`. Terminal 1:
    `openwebui query "How many hectares burnt outside the EU in 2025?"` → read the 5 excerpts.
-2. The same for question 7 (Campania 2025) and question 3 (Bouches-du-Rhône).
+3. The same for question 7 (Campania 2025) and question 3 (Bouches-du-Rhône).
 
 ## 5. Change the settings (20 min)
 

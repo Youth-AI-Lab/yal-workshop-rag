@@ -49,8 +49,8 @@ when, and who decides?* The question of the day is:
 > **Who picks the pieces?**
 
 First, you put everything in the context and see what it costs. Then a search engine picks a few
-pieces for each question, and you look at the pieces it picks. This is called **RAG**
-(*Retrieval-Augmented Generation*).
+pieces for each question (it searches inside the documents, not on the web), and you look at the
+pieces it picks. This is called **RAG** (*Retrieval-Augmented Generation*).
 
 | Bloom level | Parts | You will be able to... | Mode |
 |---|---|---|---|
@@ -114,7 +114,8 @@ All of these are in your Codespace, in the file list on the left:
 ## Part 1 - Welcome (20 min)
 
 **Goal**: open the Codespace of this workshop, bring back your work, and let Open WebUI prepare
-its two knowledge bases in the background while you work.
+its two knowledge bases (the documents, cut into pieces and ready for a search) in the background
+while you work.
 
 ### Step 1 - Open your Codespace and save your key
 
@@ -142,7 +143,7 @@ conversation with `workshop bare`, and open a second terminal.
    workshop-start 2 --from my-work.zip
    ```
 
-   Without a save, type `workshop-start 2`. You should see your files restored, then:
+   Without a save, type `workshop-start 2`. You should see your files restored and, at the end:
 
    ```
    Ready for workshop 2.
@@ -179,8 +180,8 @@ Parts 2 and 3 do not use Open WebUI.
 > make port 3000 public** (Ports tab, right-click on 3000, Port Visibility). This Open WebUI has no
 > accounts: anyone with the link could use your key.
 
-> 💡 **Tip.** **Checkpoint**: `Key OK`, `Ready for workshop 2`, and the log of Open WebUI growing in
-> the second terminal.
+> 💡 **Tip.** **Checkpoint**: `Key OK`, `Ready for workshop 2`, and the log of Open WebUI (the file
+> where it notes what it is doing) growing in the second terminal.
 
 ---
 
@@ -195,8 +196,8 @@ replay and score column B.
   the documents, read at every message.
 - **The size of the knowledge**: about half of the context window, sent with your first question
   (the gauge shows it after that message).
-  The context window is everything the model reads before it answers: here, at most 200,000
-  **tokens** (a token is a piece of a word).
+  The context is everything the model reads before it answers, and the context window is its
+  maximum size: here, 200,000 **tokens** (a token is a piece of a word).
 - **The cost of reading everything**: every message pays for all of it, again.
 
 ### What the model reads in mode B
@@ -213,6 +214,20 @@ flowchart LR
 **Key insight:** in mode B, nobody picks. Everything enters the context, every time. The
 model can find any fact, and see a contradiction between two documents, because it has both. The
 price is paid at every message.
+
+**Why does every message pay?** You pay a model by the token, for what it reads and for what it
+writes. In mode B, the model reads about 100,000 tokens even for a question of a few words, and the
+answer may need one sentence of one file.
+
+### The three questions of today
+
+Parts 2 to 6 come back to these three questions of your test set.
+
+| # | Question | What it puts to the test |
+|---|---|---|
+| 3 | In Bouches-du-Rhône, at which fire-risk levels is access to forest massifs forbidden, and at the 'severe' level, when is work allowed? | A fact that only the full text of an official document gives, not the summaries |
+| 7 | How many hectares burnt in Campania in 2025? | An answer that exists nowhere: the right answer is to say so |
+| 10 | How many hectares burnt outside the EU in 2025? | Two sources disagree: the chatbot must point out the contradiction, not choose |
 
 ### What to do
 
@@ -246,8 +261,8 @@ price is paid at every message.
    replay B
    ```
 
-   At the rehearsal: 1 min 35, and **$0.47**, about five times the $0.09 of mode A in workshop 1,
-   because every question sends the whole kit again.
+   At the rehearsal: 1 min 35, and **$0.47**, about five times the $0.09 of mode A in workshop 1.
+   Every question sends the whole kit again.
 3. Score today's three questions (3, 7 and 10) with the help of the judge. This time it proposes
    a score, and you accept it (Enter) or correct it (0, 1 or 2):
 
@@ -269,6 +284,15 @@ price is paid at every message.
    Compare the two totals only if both columns have all their questions scored. No column A,
    because you started without a save? Type `replay A`, then `score A`, first: with Feurisson, we
    measured 1 min 12 and $0.09 (before its last two rules were added).
+
+   **What to look for.** In mode A, the chatbot had no documents, so a precise question mostly got
+   an honest "I don't know". A score that goes up in column B means that the model found the fact in
+   the kit. Question 7 should not go down: more documents must not make it invent. On question 10,
+   look for both figures in the same answer: the model can only compare them because it has both
+   documents.
+
+> 💡 **Tip.** **Checkpoint**: questions 3, 7 and 10 are scored in column B, and you have read the
+> gauge.
 
 ### Think about it
 
@@ -311,8 +335,8 @@ Then you compare the answer with question 10 or question 7 of `test-questions.md
    strips. Pair 2 answers in one or two sentences. Does the answer see that two sources disagree?
 2. **Round 1, question 7.** Same thing. The strips about Campania are not about 2025. What does
    pair 2 answer?
-3. **Round 2 (big strips, one paragraph each), question 10.** Swap roles. Pair 1 passes 2 strips.
-   Is it easier to give the model both sides of the contradiction?
+3. **Round 2 (big strips, one paragraph each), question 10.** Swap roles. The new search engine
+   passes 2 strips. Is it easier to give the model both sides of the contradiction?
 4. **Talk about it in your group of two pairs**: how did the search engine choose? By the words of
    the question, or by their meaning?
 
@@ -321,7 +345,10 @@ piece that holds the answer, the model cannot find it. And a search engine alway
 even when the answer exists nowhere.
 
 > 💡 **Tip.** **This activity works with young people**, with no computer: strips of their own
-> documents, a question, and a pair that plays the search engine.
+> documents, a question, and a pair that plays the search engine. The strips of this workshop, to
+> print or to use as a model: [paper strips](https://youth-ai-lab.github.io/yal-workshop/2/strips.html).
+
+> 💡 **Tip.** **Checkpoint**: your group can say where the answer was cut.
 
 ---
 
@@ -338,6 +365,9 @@ even when the answer exists nowhere.
   texts with close meanings get close numbers. The search engine compares these numbers.
 - **Top-k**: the number of pieces the model receives for each question. Here, 5.
 
+In Part 3, you did this by hand: each strip was a chunk, and the number of strips you could pass
+was the top-k. Open WebUI does the same job with numbers.
+
 ```mermaid
 flowchart LR
   D["37 files of the kit"] --> C["cut into pieces (chunks)"] --> E["each piece becomes numbers (embedding)"]
@@ -350,6 +380,106 @@ flowchart LR
 
 **Key insight:** the search engine works before the model, and the model never sees the rest
 of the documents. A RAG is only as good as the pieces it picks.
+
+### How a text becomes numbers
+
+**A map of meanings.** Think of a map. Each text gets a place on it, and texts about the same thing
+sit near each other. The list of numbers is that place, like the coordinates of a town. A town
+needs two numbers. Here, each text gets **384**: a meaning has many more directions than north and
+east. Question 10 starts with `0.090, 0.084, 0.047, 0.003, 0.041, -0.064, -0.064, -0.046`, and 376
+numbers follow. Nobody wrote these numbers, and no single one means "fire" or "Europe". The small
+model (its name is `all-MiniLM-L6-v2`) learnt to place texts by training on a very large number of
+sentences.
+
+**A score of closeness.** The search compares two lists of numbers and gives them a score. Near 1,
+the two texts sit at the same place. Around 0.5, the small model sees no link between them.
+
+**Predict before you look.** Here are pairs of texts. With your partner, sort them: which pairs does
+the small model find close? Which does it find far apart? Then open the answer below.
+
+- *wildfire* and *forest fire*; *wildfire* and *campfire*; *wildfire* and *birthday cake*;
+  *wildfire* and *incendie de forêt* (French for "forest fire").
+- *burnt outside the EU* and *burnt beyond the EU*; *outside the EU* and *inside the EU*.
+- *Access to the forest is forbidden.* and *Access to the forest is allowed.*
+- *1 092 095 hectares burnt.* and *2.2 million hectares burnt.*
+
+<details>
+<summary>The scores we measured with the small model</summary>
+
+| Text 1 | Text 2 | Score |
+|---|---|---|
+| Access to the forest is forbidden. | Access to the forest is allowed. | **0.964** |
+| burnt outside the EU | burnt beyond the EU | **0.944** |
+| outside the EU | inside the EU | **0.935** |
+| 1 092 095 hectares burnt. | 2.2 million hectares burnt. | **0.929** |
+| wildfire | campfire | **0.865** |
+| wildfire | forest fire | **0.844** |
+| wildfire | birthday cake | **0.618** |
+| wildfire | incendie de forêt | **0.559** |
+
+</details>
+
+**What these scores tell you.** In Part 3, you asked how the search engine chose: by the words of
+the question, or by their meaning? Open WebUI compares meanings: "outside the EU" and "beyond the
+EU" get 0.944. Question 10 says "outside the EU", summary 90 says "beyond the EU", and its piece
+comes back.
+
+But "meaning" has a limit. *Forbidden* and *allowed* get the highest score of the table: the two
+sentences talk about the same thing, and only one word differs. The search finds **what a text is about**. It does not know
+whether the text is true, or whether it answers you. That is the work of the model that reads the
+excerpts, and then your work.
+
+Look also at the last line. *Incendie de forêt* means forest fire, and the small model places it
+further from *wildfire* than *birthday cake*. And *campfire* beats *forest fire*: nobody chose these
+numbers, so they do not always follow your idea of meaning.
+
+### One question, from start to end
+
+Here is what happens for question 10, with the figures of our test. Each step can be explained.
+
+**Before any question.** Open WebUI cut the 37 files into **322 pieces**, and the small model gave
+each piece its 384 numbers. This is done once, and kept. That store is what we call a **base**.
+
+1. **The question becomes numbers.** The same small model gives your question its 384 numbers.
+2. **Each piece gets a score.** The search compares the question with the 322 pieces. The best
+   score is 0.861, the worst 0.490, and half of the pieces are under 0.599.
+3. **The search sorts the pieces and cuts the list after 5.** This is the top-k:
+
+   | Rank | Score | File | Holds |
+   |---|---|---|---|
+   | 1 | 0.861 | `summaries/10` | the EU total and the 2 242 195 of all territories |
+   | 2 to 4 | 0.855 to 0.853 | `corpus/text/10` (three pieces) | the same season |
+   | 5 | 0.848 | `summaries/90` | **the 2.2 million "beyond the EU"** |
+   | | | *the list is cut here* | |
+   | 6 | 0.845 | `corpus/text/90` | the same season |
+   | 7 | 0.832 | `summaries/10` | **the 1 092 095 hectares** |
+   | 8 | 0.825 | `corpus/text/10` | the 1 092 095 hectares |
+
+   The 1 092 095 hectares miss the cut by 0.016. The piece is not bad: it is just seventh, so with
+   a top-k of 5 the model does not see it.
+4. **Open WebUI writes the message.** It pastes the excerpts into the message for the model, in
+   front of your question. We captured what leaves Open WebUI:
+
+   ```
+   System message:  the rules of the chatbot
+
+   User message:    ### Task:
+                    Respond to the user query using the provided context…
+                    <context>
+                    <source id="1" …>the text of the excerpt</source>
+                    <source id="2" …>the text of the next excerpt</source>
+                    …
+                    </context>
+
+                    How many hectares burnt outside the EU in 2025?
+   ```
+
+   The number `id` is the file: that is how the answer can name its sources.
+5. **The model reads this message and writes.** It searched nothing. It does not know that 317 other
+   pieces exist.
+
+These steps are the three words of **RAG**: *Retrieval* (steps 1 to 3, the search), *Augmented*
+(step 4, the longer message), *Generation* (step 5, the answer).
 
 ### What to do
 
@@ -372,27 +502,67 @@ of the documents. A RAG is only as good as the pieces it picks.
    The model sees only these excerpts. Is the answer to your question in them?
    ```
 
-   This command asks **no question to the model**: it only shows the search. It costs nothing.
-3. **Read the 5 excerpts.** Is the figure of 1 092 095 hectares (non-EU European countries,
-   summary 10) there? And the 2.2 million of summary 90?
+   **Read this screen from the top.** `#1` is the excerpt closest to your question. An **excerpt**
+   is a piece that the search gave back. The name after the number is its file: `summaries__10-…`
+   is `summaries/10-…`, and `corpus-text__43-…` is `corpus/text/43-…`.
+
+   This command asks **no question to the model** that writes the answers: it only shows the
+   search. It costs nothing, because the search uses the small model of Open WebUI, not your key.
+
+   > ⚠️ **Important.** A `…` at the end of an excerpt means that the terminal cut it: it shows only
+   > the first 300 characters. So if you do not see a figure here, it may still be in the excerpt,
+   > further down. To read a whole excerpt, ask the question in Open WebUI (Part 5): under the
+   > answer, click **Sources**, then click a file.
+
+3. **Read the 5 excerpts.** The expected answer points out that two sources disagree. For that, the
+   model needs both sides: the 1 092 095 hectares of non-EU European countries (summary 10) and the
+   2.2 million (summary 90). Which of these two files come back? Can you see the figures?
 4. Do the same for question 7 (`How many hectares burnt in Campania in 2025?`). The answer
-   exists nowhere. How many excerpts come back?
+   exists nowhere. How many excerpts come back? What are they about?
 5. Do the same for question 3:
 
    ```bash
    openwebui query "In Bouches-du-Rhône, at which fire-risk levels is access to forest massifs forbidden, and at the 'severe' level, when is work allowed?"
    ```
 
-   Look at the name of each excerpt: is the article of `corpus/text/43` that answers there, or
-   only the start of the document?
+   Look at the names: which excerpts come from `corpus-text__43-…`? This is the full text of an
+   order of Bouches-du-Rhône, a legal decision of the prefecture. Read the start of these excerpts.
+   The answer is in Article 4 (access) and Article 9 (work) of the order: lists of risk levels, with
+   the word `INTERDITS` (forbidden). The start of the document is a list of lines that begin with
+   `VU`. Did the search give you the articles, or something else?
 
 **What we measured** (without the model, on the kit): for question 3, the pieces of document 43
-came from its first page, never from the article that answers, at every size. For question 7,
-the RAG always gave 5 pieces. For question 10, see Part 5.
+came from its first page and, in the base of 1000, from Article 5 (the people the bans do not apply
+to), never from the articles that answer, at every size. In the base of 1000, the two pieces with
+the word `INTERDITS` come **56th** and **58th** of 322. For question 7, the RAG always gave 5 pieces.
+For question 10, see Part 5.
 
-> ℹ️ **Note.** Document 43 is in French, and the question in English. The small model that makes
-> the embeddings was trained mostly on English: this may explain question 3. **It was not tested.**
-> Try the question in French, if you like, and tell the room what you see.
+**Why always 5?** The search does not ask "is this piece good enough?". It sorts the pieces from
+the closest to the furthest, and takes the first 5. Even when no piece is really close, there is
+always a first 5. You followed the same rule with the strips: always pass something.
+
+The scores show it. We asked for a chocolate cake recipe. The best score is **0.573**, and the 5
+excerpts are mostly lists of French towns. For question 7, the best score is **0.831**, close to
+the 0.861 of question 10, and yet the answer is nowhere. Two excerpts talk about Campania, in 2017
+and in 2026. Three talk about the hectares of 2025, in the EU. Here the low score said that nothing
+was near, and the high score did not say that the answer was there.
+
+> ℹ️ **Note.** Does the language explain question 3? Document 43 is in French, the question in
+> English, and the small model was made for English. We tried the question in French. The search
+> changes: 4 of the 5 excerpts now come from document 40, in French. The two pieces with `INTERDITS`
+> move from 56th and 58th to 30th and 70th: neither comes back. So the language changes the result,
+> and it does not explain everything. These pieces are lists of levels, with few sentences: this may
+> count too, but **that was not tested**. Try the question in French, if you like, and tell the room
+> what you see.
+
+> 💡 **Tip.** **Checkpoint**: you have read the excerpts of questions 10, 7 and 3, and you can say
+> what the search gave for each one.
+
+### Think about it
+
+For question 7, the model receives 5 excerpts, and none of them holds the answer. What should it do
+with them? What could make it say so? (Hint: which rule did you give your chatbot about what it
+does not know?)
 
 ---
 
@@ -410,6 +580,25 @@ and 10. Then ask the questions to the model in Open WebUI.
 - **`openwebui top-k N`**: more pieces in the chat, from the next question, for every "Wildfire
   RAG" model.
 
+### Two settings, two moments
+
+You can change two things in this RAG, and they do not act at the same moment.
+
+**The size of the pieces** is decided before any question: the documents are cut once. To try
+another size, they must be cut again. This is why `workshop-start 2` prepared two bases in advance.
+
+**The number of pieces** (the top-k) can change at each question: the search only takes more pieces
+from the same sorted list.
+
+Why change them? A small piece can lose what goes with a fact, like a strip in Part 3. A bigger
+piece keeps more around it, and more pieces give the right one more chances to come back.
+
+**A limit of the small model.** It reads at most 256 tokens of a text, and ignores the rest. In our
+test, that was about 1,230 characters of English and about 780 of French. So a longer piece goes
+whole to the model that writes the answer, but the search places it from its start only. We checked:
+a new ending added after that limit does not change one of the 384 numbers. Past that limit, a
+bigger piece carries more text to the model, and the search reads no more of it.
+
 ### What to do
 
 #### Step 1 - Bigger pieces
@@ -420,9 +609,11 @@ and 10. Then ask the questions to the model in Open WebUI.
    openwebui query --size 2000 "How many hectares burnt outside the EU in 2025?"
    ```
 
-2. Are both figures in the excerpts now? We measured: with pieces of 2000, the two sides of
-   the contradiction come back together; with pieces of 1000 and 5 excerpts, the figure of
-   1 092 095 hectares is missing.
+2. Can you see both figures? The terminal shows only the start of each excerpt (see Part 4), so
+   the screen may not show them. We measured on the whole text of the excerpts. With pieces of
+   2000, the two sides of the contradiction come back together. With pieces of 1000 and 5 excerpts,
+   summary 10 comes back, but not its piece with the 1 092 095 hectares: this is the first failure
+   of Part 3, an answer cut in two.
 
 #### Step 2 - More pieces
 
@@ -447,6 +638,12 @@ and 10. Then ask the questions to the model in Open WebUI.
 
    Does anything bring back the article that answers?
 
+   We measured: no, at either size, even with 10 excerpts. In the base of 1000, the two pieces with
+   `INTERDITS` are 56th and 58th: a top-k of 10 stops long before them. The settings change how much of the
+   search result the model gets. They cannot bring back a passage that the search does not place
+   near your question. In workshop 3, the model searches by itself: in our test, it opened this
+   order.
+
 #### Step 3 - Ask the model, in Open WebUI
 
 1. Open the address given in `.workshop/openwebui-start.log` (`Ctrl` + click), or the **Ports**
@@ -459,7 +656,9 @@ and 10. Then ask the questions to the model in Open WebUI.
 
 3. Under the answer, click **Sources** (with their number, for example `3 Sources`): it lists the
    files that the excerpts came from. The grey labels in the text show which file each sentence
-   comes from.
+   comes from. Click a file in the list: its whole passage opens, with a score in percent. It is not
+   the score of Part 4 (we did not look for its formula), so do not compare them. Do you find the
+   1 092 095 hectares? Look again at the next step, with **Wildfire RAG 2000**.
 
    ![An answer of Wildfire RAG 1000 to another question. 1: a grey label in the text, the file of this passage. 2: the button 3 Sources, opened on the list of the files.](images/rag-sources.png)
 
@@ -475,12 +674,19 @@ We measured these two answers with the model of the workshop:
   disagree", and explains why: "The figures add up only if the 2.2 million includes the EU". The
   judge gave 2.
 
-5. If you want, give the chat 10 excerpts, ask again with **Wildfire RAG 1000**, then **set it back
-   to 5** before Part 6:
+**Only the pieces changed.** Open WebUI lists Wildfire RAG 1000 and 2000 as two "models", but behind
+them the model and the instructions are the same. With pieces of 1000, it only had the totals. With
+pieces of 2000, one piece also held the detailed figures. Your own answers will not be word for word
+the same: the same chatbot does not write exactly the same answer twice.
+
+5. If you want, give the chat 10 excerpts:
 
    ```bash
    openwebui top-k 10
    ```
+
+   Ask again with **Wildfire RAG 1000**. Does the answer now give the 1 092 095 hectares? Then
+   **set it back to 5** before Part 6:
 
    ```bash
    openwebui top-k 5
@@ -488,6 +694,9 @@ We measured these two answers with the model of the workshop:
 
 > ⚠️ **Important.** `replay RAG` refuses to run when the chat does not get 5 excerpts: column RAG is
 > always measured with 5, so that the pairs can compare. Type `openwebui top-k 5` before Part 6.
+
+> 💡 **Tip.** **Checkpoint**: you have compared the two answers to question 10, and the chat is back
+> to 5 excerpts.
 
 ### Think about it
 
@@ -513,8 +722,12 @@ B: answers and cost.
    of 1000 as Wildfire RAG 1000), in a new conversation. The answers go into a new file of the
    folder `answers/`: the line that starts with `Answers:`, near the end, gives its name, for example
    `Answers: answers/RAG-15h20.md`. Open it: under each answer, it shows which documents the
-   excerpts came from. We measured 3 to 11 seconds per question, and about **$0.14** for 11
-   questions.
+   excerpts came from. We measured 3 to 11 seconds per question.
+
+   The line `Answers:` also says `cost: not shown by Open WebUI`, so our figure of about **$0.14**
+   for 11 questions is an estimate, made from token counts. Under each answer, the line
+   `Context: … tokens` gives the size of what the model read: we measured 1,872 to 2,869 tokens per
+   question, against about 100,000 in mode B.
 2. Score questions 3, 7 and 10, with the help of the judge:
 
    ```bash
@@ -531,9 +744,9 @@ B: answers and cost.
    > ℹ️ **Note.** Workshop 3 compares questions 11 and 12 with columns B and RAG: if you only
    > have a minute, score these two first, with `score RAG 11 12`.
 
-3. **Compare columns B and RAG** for questions 3, 7 and 10, then the costs: $0.47 for B, about
-   $0.14 for the RAG, as we measured. Compare the two totals only if both columns have all their
-   questions scored.
+3. **Compare columns B and RAG** for questions 3, 7 and 10, then the costs: $0.47 for B as we
+   measured, about $0.14 for the RAG as we estimated. Compare the two totals only if both columns
+   have all their questions scored.
 
 > ℹ️ **Note.** These costs are paid with the key of your pair. Other ways to pay for a model:
 > [OpenCode guide, five ways to pay for the model](https://github.com/Youth-AI-Lab/yal-opencode-guide#before-you-start-five-ways-to-pay-for-the-model).
@@ -551,12 +764,24 @@ one of 2000. Question 7 got 2 at both sizes: the model said that the excerpts di
 answer, although it always got 5. Question 3 got 1 at both sizes: the article that answers was
 never in the excerpts.
 
+**Look at questions 3 and 7 side by side.** With pieces of 1000, the chatbot said "I don't know" to
+both. For question 7, this is right: the answer exists nowhere. For question 3, the answer is in the
+kit, in document 43, but the search did not bring it. In the chat, the two answers look alike. Only
+your test set shows the difference, because it says that question 3 has an answer.
+
+Why did it not invent an answer to question 7? Its fixed instructions say: *If the information is
+not in the excerpts you were given, say "I don't know".* We did not measure this chatbot without
+this rule.
+
 > 💡 **Tip.** **Checkpoint**: questions 3, 7 and 10 are scored in columns B and RAG, and you can name
 > one question where the pieces made the difference.
 
 ---
 
 ## Part 7 - Closing (10 min)
+
+**Goal**: decide when a RAG is a good choice, see what some chat tools do on their own, and save
+your work.
 
 ### When to choose a RAG
 
@@ -570,6 +795,10 @@ never in the excerpts.
 **Key insight:** a RAG does not fail loudly. When it picks the wrong pieces, the model still gets 5
 excerpts, and it may answer from them with confidence. That is why the test questions matter: they
 show the failures that the chat does not show.
+
+**In practice.** If your documents are few and short, put them all in the context: it is simple, and
+the model can compare them. If they no longer fit, or if each message costs too much, use a RAG, and
+keep testing it with questions whose answers you know.
 
 ### What some chat tools do on their own
 
@@ -595,7 +824,7 @@ help does not say how you would know that part was missed.
 
    If your computer already has a `my-work.zip`, the new one may be called `my-work (1).zip`:
    bring the newest.
-2. Answer on the card of the facilitator, alone, in a few words:
+2. Take a blank card or a half sheet from the facilitator. This is your **exit card**. Answer alone, in a few words:
    1. Who picks the pieces in a RAG, and when?
    2. Name one question where the size or the number of pieces changed the answer.
    3. Why is a RAG's failure harder to see than a failure of mode B?
@@ -607,8 +836,8 @@ help does not say how you would know that part was missed.
 > to read the passages found), and on a computer of your organisation
 > ([local AI guide, What we measured](https://github.com/Youth-AI-Lab/yal-local-ai-guide#what-we-measured):
 > the same two failures, with local models). In the chatbot of the Open WebUI guide, by default, the
-> model decides itself when to search (the line "Explored…" above its answer); here, Open WebUI
-> searched before every answer.
+> model decides itself when to search (a line "Explored…" or "View Result from…" above its answer);
+> here, Open WebUI searched before every answer.
 
 **Next:** [Workshop 3 - Let it search, give it know-how](https://github.com/Youth-AI-Lab/yal-workshop-search). Open its own Codespace from that page, and
 bring `my-work.zip`.
