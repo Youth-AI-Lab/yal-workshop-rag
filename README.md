@@ -1,11 +1,11 @@
 # Workshop 2 - Everything in the context, then RAG
 
-### Youth AI Lab (Erasmus+) - series "Build your own chatbot", workshop 2 of 5
+### Youth AI Lab (Erasmus+) - series "Build your own chatbot", workshop 2 of 6
 
 - **Project:** Youth AI Lab (Erasmus+), with five partners: L.A.B. (Aix-en-Provence, France),
   UAB (Barcelona, Spain), Perlatecnica (Naples, Italy), Digitale Wolven (Antwerp, Belgium),
   CSC Vent des Îles (La Rochelle, France).
-- **The series:** [the five workshops](https://github.com/Youth-AI-Lab/yal-workshop-kit#the-series)
+- **The series:** [the six workshops](https://github.com/Youth-AI-Lab/yal-workshop-kit#the-series)
 - **Need help?**
   - Raise your hand and ask the facilitator.
   - If something breaks, don't panic: your files stay in the Codespace.
@@ -90,6 +90,7 @@ The series goes on, one piece of the chatbot at a time:
 - **Workshop 3**: the model searches by itself, and skills to add a document you checked
 - **Workshop 4**: tools that act outside, such as today's fire danger level
 - **Workshop 5**: organise what it knows in a wiki, and pack the chatbot of your territory
+- **Workshop 6**: fine-tune a small model, to sort messages before the chatbot
 
 ### Before you start
 
