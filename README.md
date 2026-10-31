@@ -449,13 +449,13 @@ each piece its 384 numbers. This is done once, and kept. That store is what we c
    |---|---|---|---|
    | 1 | 0.861 | `summaries/10` | the EU total and the 2 242 195 of all territories |
    | 2 to 4 | 0.855 to 0.853 | `corpus/text/10` (three pieces) | the same season |
-   | 5 | 0.848 | `summaries/90` | **the 2.2 million "beyond the EU"** |
+   | 5 | 0.847 | `summaries/90` | **the 2.2 million "beyond the EU"** |
    | | | *the list is cut here* | |
    | 6 | 0.845 | `corpus/text/90` | the same season |
    | 7 | 0.832 | `summaries/10` | **the 1 092 095 hectares** |
    | 8 | 0.825 | `corpus/text/10` | the 1 092 095 hectares |
 
-   The 1 092 095 hectares miss the cut by 0.016. The piece is not bad: it is just seventh, so with
+   The 1 092 095 hectares miss the cut by less than 0.02. The piece is not bad: it is just seventh, so with
    a top-k of 5 the model does not see it.
 4. **Open WebUI writes the message.** It pastes the excerpts into the message for the model, in
    front of your question. We captured what leaves Open WebUI:
@@ -497,28 +497,29 @@ These steps are the three words of **RAG**: *Retrieval* (steps 1 to 3, the searc
    Base: excerpts of 1000 characters. Top-k: 5.
    The 5 excerpts the RAG gives the model (closest first):
 
-   #1 summaries__10-eu-2025-wildfire-season.md
+   #1 summaries__10-eu-2025-wildfire-season.md (score 0.861)
+      # The 2025 wildfire season in the EU (EFFIS figures) The 2025 fire season was the worst…
+
+   #2 corpus-text__10-jrc-eu-2025-wildfire-season.md (score 0.855)
       …
    The model sees only these excerpts. Is the answer to your question in them?
    ```
 
    **Read this screen from the top.** `#1` is the excerpt closest to your question. An **excerpt**
    is a piece that the search gave back. The name after the number is its file: `summaries__10-…`
-   is `summaries/10-…`, and `corpus-text__43-…` is `corpus/text/43-…`.
+   is `summaries/10-…`, and `corpus-text__43-…` is `corpus/text/43-…`. The number in brackets is
+   the score of closeness you just met. Each excerpt is printed whole, so scroll up in the terminal
+   to read from `#1`.
 
    This command asks **no question to the model** that writes the answers: it only shows the
    search. It costs nothing, because the search uses the small model of Open WebUI, not your key.
 
-   > ⚠️ **Important.** A `…` at the end of an excerpt means that the terminal cut it: it shows only
-   > the first 300 characters. So if you do not see a figure here, it may still be in the excerpt,
-   > further down. To read a whole excerpt, ask the question in Open WebUI (Part 5): under the
-   > answer, click **Sources**, then click a file.
-
 3. **Read the 5 excerpts.** The expected answer points out that two sources disagree. For that, the
    model needs both sides: the 1 092 095 hectares of non-EU European countries (summary 10) and the
-   2.2 million (summary 90). Which of these two files come back? Can you see the figures?
+   2.2 million (summary 90). Which of these two files come back? Which of the two figures can you find?
 4. Do the same for question 7 (`How many hectares burnt in Campania in 2025?`). The answer
-   exists nowhere. How many excerpts come back? What are they about?
+   exists nowhere. How many excerpts come back? What are they about? Compare their scores with
+   those of question 10.
 5. Do the same for question 3:
 
    ```bash
@@ -541,7 +542,8 @@ For question 10, see Part 5.
 the closest to the furthest, and takes the first 5. Even when no piece is really close, there is
 always a first 5. You followed the same rule with the strips: always pass something.
 
-The scores show it. We asked for a chocolate cake recipe. The best score is **0.573**, and the 5
+The scores show it. Try it: `openwebui query "What is the best recipe for a chocolate cake?"`. In
+our test, the best score is **0.573**, and the 5
 excerpts are mostly lists of French towns. For question 7, the best score is **0.831**, close to
 the 0.861 of question 10, and yet the answer is nowhere. Two excerpts talk about Campania, in 2017
 and in 2026. Three talk about the hectares of 2025, in the EU. Here the low score said that nothing
@@ -609,8 +611,7 @@ bigger piece carries more text to the model, and the search reads no more of it.
    openwebui query --size 2000 "How many hectares burnt outside the EU in 2025?"
    ```
 
-2. Can you see both figures? The terminal shows only the start of each excerpt (see Part 4), so
-   the screen may not show them. We measured on the whole text of the excerpts. With pieces of
+2. Can you find both figures now? We measured: with pieces of
    2000, the two sides of the contradiction come back together. With pieces of 1000 and 5 excerpts,
    summary 10 comes back, but not its piece with the 1 092 095 hectares: this is the first failure
    of Part 3, an answer cut in two.
