@@ -33,7 +33,7 @@ Full page: [README.md](README.md). Setup and common problems: [SETUP.md](SETUP.m
    `Ctrl+C` twice.
 2. Predict: which questions go up from A to B?
 3. `replay B`, then `score B 3 7 10` (Enter accepts the judge's score, or type 0, 1 or 2).
-   If you have time: `score B 1 2 4 5 6 8 9 11 12` (no question 12: leave out the 12).
+   If you have time: `score B 1 2 4 5 6 8 9 11 12` (no question 12 written? leave out the 12).
    One minute left: `score B 11 12` (workshop 3 uses them).
 4. Compare columns A and B on 3, 7 and 10; the totals only if both columns are complete.
    No column A (no save)? `replay A`, then `score A`, first.

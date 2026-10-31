@@ -247,14 +247,14 @@ price is paid at every message.
 
    At the rehearsal: 1 min 35, and **$0.47**, about five times the $0.09 of mode A in workshop 1,
    because every question sends the whole kit again.
-3. Score the three questions of today with the help of the judge. This time it proposes a score,
-   and you accept it (Enter) or correct it (0, 1 or 2):
+3. Score today's three questions (3, 7 and 10) with the help of the judge. This time it proposes
+   a score, and you accept it (Enter) or correct it (0, 1 or 2):
 
    ```bash
    score B 3 7 10
    ```
 
-   If you have time, score the other questions too (no question 12: leave out the 12):
+   If you have time, score the other questions too (no question 12 written? leave out the 12):
 
    ```bash
    score B 1 2 4 5 6 8 9 11 12
@@ -521,7 +521,7 @@ B: answers and cost.
    ```
 
    A column **RAG** appears in `scores.md`, after column B. If you have time, score the other
-   questions too (no question 12: leave out the 12):
+   questions too (no question 12 written? leave out the 12):
 
    ```bash
    score RAG 1 2 4 5 6 8 9 11 12
