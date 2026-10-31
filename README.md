@@ -1,6 +1,6 @@
 # Workshop 2 - Everything in the context, then RAG
 
-### Youth AI Lab (Erasmus+) - series "Customising a chatbot", workshop 2 of 5
+### Youth AI Lab (Erasmus+) - series "Build your own chatbot", workshop 2 of 5
 
 - **Project:** Youth AI Lab (Erasmus+), with five partners: L.A.B. (Aix-en-Provence, France),
   UAB (Barcelona, Spain), Perlatecnica (Naples, Italy), Digitale Wolven (Antwerp, Belgium),
