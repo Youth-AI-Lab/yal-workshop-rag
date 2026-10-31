@@ -527,7 +527,7 @@ These steps are the three words of **RAG**: *Retrieval* (steps 1 to 3, the searc
    ```
 
    Look at the names: which excerpts come from `corpus-text__43-…`? This is the full text of an
-   order of Bouches-du-Rhône, a legal decision of the prefecture. Read the start of these excerpts.
+   order of Bouches-du-Rhône, a legal decision of the prefecture. Read these excerpts.
    The answer is in Article 4 (access) and Article 9 (work) of the order: lists of risk levels, with
    the word `INTERDITS` (forbidden). The start of the document is a list of lines that begin with
    `VU`. Did the search give you the articles, or something else?
