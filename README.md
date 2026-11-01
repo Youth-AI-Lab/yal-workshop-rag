@@ -391,8 +391,43 @@ numbers follow. Nobody wrote these numbers, and no single one means "fire" or "E
 model (its name is `all-MiniLM-L6-v2`) learnt to place texts by training on a very large number of
 sentences.
 
-**A score of closeness.** The search compares two lists of numbers and gives them a score. Near 1,
-the two texts sit at the same place. Around 0.5, the small model sees no link between them.
+**A score of closeness.** Picture each text as an arrow, from the centre of the map to its place.
+All the arrows have the same length, so only their direction counts. Two texts about the same thing
+point nearly the same way: what matters is the **angle** between the two arrows.
+
+The search does not measure this angle with a protractor. It multiplies the two lists number by
+number, then adds up the results. This sum is called the **cosine** of the angle. Here it is with 2
+numbers, so that you can draw it on paper (the numbers are made up for the example):
+
+| | First number | Second number | Sum |
+|---|---|---|---|
+| Text A | 0.6 | 0.8 | |
+| Text B | 0.8 | 0.6 | |
+| A × B | 0.48 | 0.48 | **0.96** |
+
+With 384 numbers, nobody can draw the arrows, but the sum is computed the same way, from the numbers
+$a_1$ to $a_{384}$ of one text and $b_1$ to $b_{384}$ of the other:
+
+$$
+\cos(\text{angle}) = a_1 b_1 + a_2 b_2 + \dots + a_{384} b_{384}
+$$
+
+Open WebUI then turns this sum into a score between 0 and 1:
+
+$$
+\text{score} = \frac{1 + \cos(\text{angle})}{2}
+$$
+
+| The two arrows | Angle | Cosine (the sum) | Score |
+|---|---|---|---|
+| Same direction | 0° | 1 | **1** |
+| Text A and text B | 16° | 0.96 | **0.98** |
+| *wildfire* and *fire in the woods* (measured) | 51° | 0.625 | **0.813** |
+| Right angle | 90° | 0 | **0.5** |
+| Opposite directions | 180° | -1 | **0** |
+
+So a score near 1 means almost the same direction. A score around 0.5 means a right angle: the small
+model sees no link between the two texts.
 
 **Predict before you look.** Here are pairs of texts. With your partner, sort them: which pairs does
 the small model find close? Which does it find far apart? Then open the answer below.
