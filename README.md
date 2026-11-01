@@ -138,7 +138,8 @@ conversation with `workshop bare`, and open a second terminal.
 > Requests then go only to zero-data-retention companies (they say they store nothing) hosted in
 > Europe, with Mistral Small by default. OpenRouter itself may still handle them elsewhere. The
 > setting does not lift OpenRouter's 18+ rule or section 5.2 of its terms, and flagged content may
-> be kept. Mode B of this workshop does not run with it: the kit is too big for that model. Read
+> be kept. Mode B of this workshop does not run with it: the kit is too big for that model, so you
+> skip Part 2 and compare with column A in Part 6. Read
 > [OpenRouter guide, Part 8](https://github.com/Youth-AI-Lab/yal-openrouter-guide#part-8---data-and-young-people)
 > before any session with young people.
 
@@ -203,6 +204,11 @@ Parts 2 and 3 do not use Open WebUI.
 
 **Goal**: give the chatbot all the knowledge of the kit at once, see how full the context is, then
 replay and score column B.
+
+> ⚠️ **Important.** **With `workshop-login --europe`, skip the steps of this part.** `workshop B`,
+> `replay B` and `score B` stop with a message: the kit is too big for Mistral Small. Read **What
+> you will discover** and **What the model reads in mode B**, then go to Part 3. Your column B stays
+> empty, and Part 6 says what to compare instead.
 
 ### What you will discover
 
