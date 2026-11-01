@@ -123,10 +123,25 @@ Follow [SETUP.md](SETUP.md#setup), steps 1 to 5, with the link at the top of thi
 Codespace wait for you, open it, save your key with `workshop-login`, check `Key OK`, have a first
 conversation with `workshop bare`, and open a second terminal.
 
-> 💡 **If you use OpenCode.** Same commands, after `workshop-login --engine opencode`. The judge of
-> `score` and Open WebUI need an Anthropic key (`sk-ant-`). The
+> 💡 **If you use OpenCode.** Same commands, after `workshop-login --engine opencode`. The
 > [OpenCode guide, Part 4](https://github.com/Youth-AI-Lab/yal-opencode-guide#part-4---the-knowledge)
 > shows the other way to give knowledge to a chatbot, by search, which is workshop 3.
+
+> 💡 **If your key starts with `sk-or-` (OpenRouter).** Paste it in `workshop-login`, with no option:
+> the key chooses OpenCode, and `score`, Open WebUI and `replay RAG` use OpenRouter too. Open WebUI was
+> measured that way with Mistral Small, not with the default model, DeepSeek V4 Flash (not tested).
+> Compare your own columns only: `score` writes the model under the table, and warns when two
+> columns used different models. The chatbot figures of this page (cost, time, gauge, scores) were
+> measured with Claude, not with this model.
+
+> ⚠️ **Important.** **With young people and an OpenRouter key**, zero-data-retention models hosted in
+> Europe must be on. Zero data retention: the company says it stores nothing, and OpenRouter does not
+> guarantee it. Turn on the switches in your [privacy settings](https://openrouter.ai/settings/privacy)
+> and choose **Zero retention only** (not tested). Europe is not a switch: it needs a Business or
+> Enterprise plan, and the workshop commands cannot do it yet. No setting lifts OpenRouter's rule: "You
+> must be at least 18 years of age to use the Service." Read
+> [OpenRouter guide, Part 8](https://github.com/Youth-AI-Lab/yal-openrouter-guide#part-8---data-and-young-people)
+> before any session with young people.
 
 > ℹ️ **No Codespace?** The same repository opens on your own computer, with Docker and VS Code: see
 > the [dev containers guide](https://github.com/Youth-AI-Lab/yal-devcontainer-guide).
