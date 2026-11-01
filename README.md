@@ -283,7 +283,7 @@ Parts 2 to 6 come back to these three questions of your test set.
 4. **Compare columns A and B** in `scores.md`, for questions 3, 7 and 10, and with your prediction.
    Compare the two totals only if both columns have all their questions scored. No column A,
    because you started without a save? Type `replay A`, then `score A`, first: with Feurisson, we
-   measured 1 min 12 and $0.09 (before its last two rules were added).
+   measured 1 min 12 and $0.09 (before its protection rules were added).
 
    **What to look for.** In mode A, the chatbot had no documents, so a precise question mostly got
    an honest "I don't know". A score that goes up in column B means that the model found the fact in
