@@ -429,6 +429,11 @@ sentences talk about the same thing, and only one word differs. The search finds
 whether the text is true, or whether it answers you. That is the work of the model that reads the
 excerpts, and then your work.
 
+So the first decision comes before any question: **which documents may enter the base?** The model
+and the reader can only judge what the search brings back. A bad document on the right subject will
+come back. A missing passage cannot be judged at all. A document can even carry a sentence written
+for the chatbot: workshop 4 shows this.
+
 Look also at the last line. *Incendie de forêt* means forest fire, and the small model places it
 further from *wildfire* than *birthday cake*. And *campfire* beats *forest fire*: nobody chose these
 numbers, so they do not always follow your idea of meaning.
@@ -800,6 +805,11 @@ show the failures that the chat does not show.
 **In practice.** If your documents are few and short, put them all in the context: it is simple, and
 the model can compare them. If they no longer fit, or if each message costs too much, use a RAG, and
 keep testing it with questions whose answers you know.
+
+**Why not cut under a score?** After the cake at 0.573, you may want to keep only the excerpts above
+0.75. Our figures show the trap. Question 7, which has no answer, stays at 0.831. The two pieces with
+`INTERDITS`, which answer question 3, are at about 0.72. The cut would keep the empty answer and
+remove the right one.
 
 ### What some chat tools do on their own
 
