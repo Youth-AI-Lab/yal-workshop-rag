@@ -197,7 +197,7 @@ replay and score column B.
 - **The size of the knowledge**: about half of the context window, sent with your first question
   (the gauge shows it after that message).
   The context is everything the model reads before it answers, and the context window is its
-  maximum size: here, 200,000 **tokens** (a token is a piece of a word).
+  maximum size: here, 200,000 **tokens** ([a token](https://github.com/Youth-AI-Lab/yal-local-ai-guide/blob/main/how-an-llm-works.md#what-a-token-really-is) is a piece of a word).
 - **The cost of reading everything**: every message pays for all of it, again.
 
 ### What the model reads in mode B
@@ -733,7 +733,7 @@ is right: the answer with pieces of 2000 also says "I can't confirm this from th
 **Only the pieces changed.** Open WebUI lists Wildfire RAG 1000 and 2000 as two "models", but behind
 them the model and the instructions are the same. With pieces of 1000, it only had the totals. With
 pieces of 2000, one piece also held the detailed figures. Your own answers will not be word for word
-the same: the same chatbot does not write exactly the same answer twice.
+the same: the same chatbot does not write exactly the same answer twice ([why](https://github.com/Youth-AI-Lab/yal-local-ai-guide/blob/main/how-an-llm-works.md#temperature)).
 
 5. If you want, give the chat 10 excerpts:
 
