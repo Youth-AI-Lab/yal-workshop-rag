@@ -28,8 +28,6 @@ Full page: [README.md](README.md). Setup and common problems: [SETUP.md](SETUP.m
 
 ## 2. Everything in the context (15 min)
 
-With `workshop-login --europe`, mode B does not run: skip this part, and go to part 3.
-
 1. `workshop B` (first time: **↓** to `Yes, I trust this folder`, Enter; closed? type it again).
    The gauge says `0 / 200k` until your first message. Ask question 10, look at the gauge (about half of the window).
    `Ctrl+C` twice.
@@ -67,7 +65,7 @@ Two pairs, one envelope of strips. Pair 1 is the search engine: it passes 3 stri
 `replay RAG` (it asks **Wildfire RAG (workshop kit)**, the same base as Wildfire RAG 1000), then
 `score RAG 3 7 10`. If you have time: `score RAG 1 2 4 5 6 8 9 11 12`; one minute left:
 `score RAG 11 12` (workshop 3 uses them). Compare columns B and RAG on 3, 7 and 10 (the totals
-only if both columns are complete), and the costs. No column B (`--europe`): compare with column A.
+only if both columns are complete), and the costs.
 
 ## 7. Closing (10 min)
 
