@@ -709,11 +709,26 @@ We measured these two answers with the model of the workshop:
 
 - **Pieces of 1000**: the answer subtracts the EU from the total (about 1 162 657 hectares), says
   that this is its own calculation, and sees that the 2.2 million disagrees. But it "can't tell
-  which reading is correct": the figure of 1 092 095 hectares is not in its excerpts. The judge
+  which reading is correct", and the figure of 1 092 095 hectares is not in its excerpts. The judge
   gave 1.
 - **Pieces of 2000**: the answer gives 1 092 095 + 70 562 hectares, writes that "the sources
   disagree", and explains why: "The figures add up only if the 2.2 million includes the EU". The
   judge gave 2.
+
+**Check it with a calculator.** Summary 10 gives the three parts of its total:
+
+| Where | Hectares |
+|---|---:|
+| EU | 1 079 538 |
+| Non-EU European countries | 1 092 095 |
+| Middle East and North Africa | 70 562 |
+| **All territories** | **2 242 195** |
+
+The parts add up exactly. Outside the EU, that makes 1 092 095 + 70 562 = 1 162 657 hectares: the
+same figure as the subtraction, by a second road that the 5 pieces of 1000 did not give. Summary 90
+says 2.2 million beyond the EU, almost twice as much. But 2 242 195, EU included, rounds to 2.2
+million: the two agree only if the 2.2 million includes the EU. This sum does not show which source
+is right: the answer with pieces of 2000 also says "I can't confirm this from the excerpts alone".
 
 **Only the pieces changed.** Open WebUI lists Wildfire RAG 1000 and 2000 as two "models", but behind
 them the model and the instructions are the same. With pieces of 1000, it only had the totals. With
@@ -788,6 +803,22 @@ B: answers and cost.
 3. **Compare columns B and RAG** for questions 3, 7 and 10, then the costs: $0.47 for B as we
    measured, about $0.14 for the RAG as we estimated. Compare the two totals only if both columns
    have all their questions scored.
+
+**Do the sum.** The RAG reads about 40 times less than mode B (about 2,400 tokens per question on
+average, against 100,000), but it costs only about 3 times less. In our test, the model cost
+$2 per million tokens read and $10 per million tokens written. For the 11 questions of the RAG:
+
+| | Tokens | Cost |
+|---|---|---|
+| Read | 26,789 | 26,789 × $2 ÷ 1,000,000 = $0.054 |
+| Written | 8,633 | 8,633 × $10 ÷ 1,000,000 = $0.086 |
+| Total | | about **$0.14** |
+
+First, a RAG cuts the reading, not the writing, and a written token costs five times more than a
+token read: here, writing is most of the bill. Second, mode B does not pay full price. At full price, 11 × 100,000 tokens read would cost $2.20, and we measured $0.47 for everything. The
+service that runs the model keeps the text it has just received for a short time (a *prompt cache*),
+and charges less when the same text comes back. So each message that follows soon after pays for
+all of it again, but at a lower price.
 
 > ℹ️ **Note.** These costs are paid with the key of your pair. Other ways to pay for a model:
 > [OpenCode guide, five ways to pay for the model](https://github.com/Youth-AI-Lab/yal-opencode-guide#before-you-start-five-ways-to-pay-for-the-model).
