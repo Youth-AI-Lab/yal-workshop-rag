@@ -134,12 +134,11 @@ conversation with `workshop bare`, and open a second terminal.
 > columns used different models. The chatbot figures of this page (cost, time, gauge, scores) were
 > measured with Claude, not with this model.
 
-> ⚠️ **Important.** **With young people and an OpenRouter key**, zero-data-retention models hosted in
-> Europe must be on. Zero data retention: the company says it stores nothing, and OpenRouter does not
-> guarantee it. Turn on the switches in your [privacy settings](https://openrouter.ai/settings/privacy)
-> and choose **Zero retention only** (not tested). Europe is not a switch: it needs a Business or
-> Enterprise plan, and the workshop commands cannot do it yet. No setting lifts OpenRouter's rule: "You
-> must be at least 18 years of age to use the Service." Read
+> ⚠️ **Important.** **With young people and an OpenRouter key**, type `workshop-login --europe`.
+> Requests then go only to zero-data-retention companies (they say they store nothing) hosted in
+> Europe, with Mistral Small by default. OpenRouter itself may still handle them elsewhere. The
+> setting does not lift OpenRouter's 18+ rule or section 5.2 of its terms, and flagged content may
+> be kept. Mode B of this workshop does not run with it: the kit is too big for that model. Read
 > [OpenRouter guide, Part 8](https://github.com/Youth-AI-Lab/yal-openrouter-guide#part-8---data-and-young-people)
 > before any session with young people.
 
