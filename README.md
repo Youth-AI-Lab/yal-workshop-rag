@@ -135,8 +135,8 @@ conversation with `workshop bare`, and open a second terminal.
 > measured with Claude, not with this model.
 
 > ⚠️ **Important.** **With young people and an OpenRouter key**, type `workshop-login --europe`.
-> Requests then go only to zero-data-retention companies (they say they store nothing) hosted in
-> Europe, with Mistral Small by default. OpenRouter itself may still handle them elsewhere. The
+> Requests then go only to Mistral, hosted in Europe, with zero data retention (it says it stores nothing).
+> The default model is Mistral Small. OpenRouter itself may still handle them elsewhere. The
 > setting does not lift OpenRouter's 18+ rule or section 5.2 of its terms, and flagged content may
 > be kept. Mode B of this workshop does not run with it: the kit is too big for that model, so you
 > skip Part 2 and compare with column A in Part 6. Read
