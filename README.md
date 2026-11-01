@@ -870,8 +870,9 @@ stopped, type `openwebui start`.
 **`Open WebUI is not started here (not a Codespace or a dev container).`** - Open WebUI only starts
 by itself in a Codespace or a dev container. Elsewhere, type `openwebui start && openwebui sizes`.
 
-**`! This repository is for workshop 2. Workshop … has its own repository…`** - You typed
-`workshop-start` with the number of another workshop. Here, type `workshop-start 2`.
+**`This repository is for workshop 2. Workshop … has its own repository…`** - You typed
+`workshop-start` with the number of another workshop. Nothing was changed. Here, type
+`workshop-start 2`.
 
 ---
 
