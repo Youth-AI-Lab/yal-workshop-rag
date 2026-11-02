@@ -792,11 +792,11 @@ B: answers and cost.
    of 1000 as Wildfire RAG 1000), in a new conversation. The answers go into a new file of the
    folder `answers/`: the line that starts with `Answers:`, near the end, gives its name, for example
    `Answers: answers/RAG-15h20.md`. Open it: under each answer, it shows which documents the
-   excerpts came from. We measured 3 to 11 seconds per question.
+   excerpts came from. We measured 4 to 10 seconds per question.
 
    The line `Answers:` also says `cost: not shown by Open WebUI`, so our figure of about **$0.14**
    for 11 questions is an estimate, made from token counts. Under each answer, the line
-   `Context: … tokens` gives the size of what the model read: we measured 1,872 to 2,869 tokens per
+   `Context: … tokens` gives the size of what the model read: we measured 2,105 to 2,868 tokens per
    question, against about 100,000 in mode B.
 2. Score questions 3, 7 and 10, with the help of the judge:
 
@@ -818,14 +818,14 @@ B: answers and cost.
    measured, about $0.14 for the RAG as we estimated. Compare the two totals only if both columns
    have all their questions scored.
 
-**Do the sum.** The RAG reads about 40 times less than mode B (about 2,400 tokens per question on
+**Do the sum.** The RAG reads about 40 times less than mode B (about 2,500 tokens per question on
 average, against 100,000), but it costs only about 3 times less. In our test, the model cost
 $2 per million tokens read and $10 per million tokens written. For the 11 questions of the RAG:
 
 | | Tokens | Cost |
 |---|---|---|
-| Read | 26,789 | 26,789 × $2 ÷ 1,000,000 = $0.054 |
-| Written | 8,633 | 8,633 × $10 ÷ 1,000,000 = $0.086 |
+| Read | 27,135 | 27,135 × $2 ÷ 1,000,000 = $0.054 |
+| Written | 8,770 | 8,770 × $10 ÷ 1,000,000 = $0.088 |
 | Total | | about **$0.14** |
 
 First, a RAG cuts the reading, not the writing, and a written token costs five times more than a
@@ -845,8 +845,9 @@ all of it again, but at a lower price.
 > different from Feurisson, part of a difference can come from the instructions, not from the
 > pieces.
 
-What we measured, with the judge: 18 out of 22 for the RAG of 1000, 19 out of 22 for the
-one of 2000. Question 7 got 2 at both sizes: the model said that the excerpts did not contain the
+What we measured, with the judge: 19 out of 22 for the RAG of 1000, 16 out of 22 for the
+one of 2000. Two days earlier, the same test gave 18 and 19: the judge's score moves by a few points
+from one run to the next, so a difference of one or two points says little. Question 7 got 2 at both sizes: the model said that the excerpts did not contain the
 answer, although it always got 5. Question 3 got 1 at both sizes: the article that answers was
 never in the excerpts.
 
