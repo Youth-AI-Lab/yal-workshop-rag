@@ -491,11 +491,11 @@ numbers, so they do not always follow your idea of meaning.
 
 Here is what happens for question 10, with the figures of our test. Each step can be explained.
 
-**Before any question.** Open WebUI cut the 37 files into **322 pieces**, and the small model gave
+**Before any question.** Open WebUI cut the 37 files into **326 pieces**, and the small model gave
 each piece its 384 numbers. This is done once, and kept. That store is what we call a **base**.
 
 1. **The question becomes numbers.** The same small model gives your question its 384 numbers.
-2. **Each piece gets a score.** The search compares the question with the 322 pieces. The best
+2. **Each piece gets a score.** The search compares the question with the 326 pieces. The best
    score is 0.861, the worst 0.490, and half of the pieces are under 0.599.
 3. **The search sorts the pieces and cuts the list after 5.** This is the top-k:
 
@@ -529,7 +529,7 @@ each piece its 384 numbers. This is done once, and kept. That store is what we c
    ```
 
    The number `id` is the file: that is how the answer can name its sources.
-5. **The model reads this message and writes.** It searched nothing. It does not know that 317 other
+5. **The model reads this message and writes.** It searched nothing. It does not know that 321 other
    pieces exist.
 
 These steps are the three words of **RAG**: *Retrieval* (steps 1 to 3, the search), *Augmented*
@@ -587,9 +587,9 @@ These steps are the three words of **RAG**: *Retrieval* (steps 1 to 3, the searc
    `VU`. Did the search give you the articles, or something else?
 
 **What we measured** (without the model, on the kit): for question 3, the pieces of document 43
-came from its first page and, in the base of 1000, from Article 5 (the people the bans do not apply
-to), never from the articles that answer, at every size. In the base of 1000, the two pieces with
-the word `INTERDITS` come **56th** and **58th** of 322. For question 7, the RAG always gave 5 pieces.
+came from its first page, never from the articles that answer, at every size. In the base of 1000,
+only one piece of document 43 comes back, 5th, and a summary about Charente-Maritime comes 4th. The
+two pieces with the word `INTERDITS` come **61st** and **63rd** of 326. For question 7, the RAG always gave 5 pieces.
 For question 10, see Part 5.
 
 **Why always 5?** The search does not ask "is this piece good enough?". It sorts the pieces from
@@ -606,7 +606,7 @@ was near, and the high score did not say that the answer was there.
 > ℹ️ **Note.** Does the language explain question 3? Document 43 is in French, the question in
 > English, and the small model was made for English. We tried the question in French. The search
 > changes: 4 of the 5 excerpts now come from document 40, in French. The two pieces with `INTERDITS`
-> move from 56th and 58th to 30th and 70th: neither comes back. So the language changes the result,
+> move from 61st and 63rd to 30th and 70th: neither comes back. So the language changes the result,
 > and it does not explain everything. These pieces are lists of levels, with few sentences: this may
 > count too, but **that was not tested**. Try the question in French, if you like, and tell the room
 > what you see.
@@ -694,7 +694,7 @@ bigger piece carries more text to the model, and the search reads no more of it.
    Does anything bring back the article that answers?
 
    We measured: no, at either size, even with 10 excerpts. In the base of 1000, the two pieces with
-   `INTERDITS` are 56th and 58th: a top-k of 10 stops long before them. The settings change how much of the
+   `INTERDITS` are 61st and 63rd: a top-k of 10 stops long before them. The settings change how much of the
    search result the model gets. They cannot bring back a passage that the search does not place
    near your question. In workshop 3, the model searches by itself: in our test, it opened this
    order.
