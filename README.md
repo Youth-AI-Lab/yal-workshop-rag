@@ -137,7 +137,7 @@ conversation with `workshop bare`, and open a second terminal.
 > ⚠️ **Important.** **With young people and an OpenRouter key**, type `workshop-login --europe`.
 > Requests then go only to Mistral, hosted in Europe, with zero data retention (it says it stores nothing).
 > The default model is `mistralai/mistral-small-2603`. OpenRouter itself may still handle them elsewhere. The
-> setting does not lift OpenRouter's 18+ rule or section 5.2 of its terms, and flagged content may
+> setting does not lift OpenRouter's 18+ rule (its support chat reads it as: no young person creates or uses their own key; this is not in its terms, so keep every key with the adults) or section 5.2 of its terms, and flagged content may
 > be kept. Read
 > [OpenRouter guide, Part 8](https://github.com/Youth-AI-Lab/yal-openrouter-guide#part-8---data-and-young-people)
 > before any session with young people.
