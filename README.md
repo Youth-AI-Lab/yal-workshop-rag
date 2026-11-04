@@ -127,20 +127,11 @@ conversation with `workshop bare`, and open a second terminal.
 > [OpenCode guide, Part 4](https://github.com/Youth-AI-Lab/yal-opencode-guide#part-4---the-knowledge)
 > shows the other way to give knowledge to a chatbot, by search, which is workshop 3.
 
-> 💡 **If your key starts with `sk-or-` (OpenRouter).** Paste it in `workshop-login`, with no option:
-> the key chooses OpenCode, and `score`, Open WebUI and `replay RAG` use OpenRouter too. Open WebUI was
-> measured that way with Mistral Small, not with the default model, DeepSeek V4 Flash (not tested).
-> Compare your own columns only: `score` writes the model under the table, and warns when two
-> columns used different models. The chatbot figures of this page (cost, time, gauge, scores) were
-> measured with Claude, not with this model.
-
-> ⚠️ **Important.** **With young people and an OpenRouter key**, type `workshop-login --europe`.
-> Requests then go only to Mistral, hosted in Europe, with zero data retention (it says it stores nothing).
-> The default model is `mistralai/mistral-small-2603`. OpenRouter itself may still handle them elsewhere. The
-> setting does not lift OpenRouter's 18+ rule (its support chat reads it as: no young person creates or uses their own key; this is not in its terms, so keep every key with the adults) or section 5.2 of its terms, and flagged content may
-> be kept. Read
-> [OpenRouter guide, Part 8](https://github.com/Youth-AI-Lab/yal-openrouter-guide#part-8---data-and-young-people)
-> before any session with young people.
+> 💡 **If your key starts with `sk-or-` (OpenRouter).** Paste it in `workshop-login`, with no option,
+> and read [SETUP.md, With an OpenRouter key](SETUP.md#with-an-openrouter-key): Open WebUI and
+> `replay RAG` use OpenRouter too. Today, Open WebUI was measured that way with Mistral Small, not with
+> the default model, DeepSeek V4 Flash (not tested). Before anything that young people wrote goes
+> through OpenRouter, read [Young people and OpenRouter](SETUP.md#young-people-and-openrouter).
 
 > ℹ️ **No Codespace?** The same repository opens on your own computer, with Docker and VS Code: see
 > the [dev containers guide](https://github.com/Youth-AI-Lab/yal-devcontainer-guide).
@@ -368,6 +359,8 @@ even when the answer exists nowhere.
 > 💡 **Tip.** **This activity works with young people**, with no computer: strips of their own
 > documents, a question, and a pair that plays the search engine. The strips of this workshop, to
 > print or to use as a model: [paper strips](https://youth-ai-lab.github.io/yal-workshop/2/strips.html).
+> A version for 12–15, as a game with rounds and points:
+> [the search engine game](https://youth-ai-lab.github.io/yal-workshop/2/strips-youth.html).
 
 > 💡 **Tip.** **Checkpoint**: your group can say where the answer was cut.
 
