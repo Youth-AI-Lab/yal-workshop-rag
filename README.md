@@ -845,11 +845,12 @@ all of it again, but at a lower price.
 > different from Feurisson, part of a difference can come from the instructions, not from the
 > pieces.
 
-What we measured, with the judge: 19 out of 22 for the RAG of 1000, 16 out of 22 for the
-one of 2000. Two days earlier, the same test gave 18 and 19: the judge's score moves by a few points
-from one run to the next, so a difference of one or two points says little. Question 7 got 2 at both sizes: the model said that the excerpts did not contain the
-answer, although it always got 5. Question 3 got 1 at both sizes: the article that answers was
-never in the excerpts.
+What we measured, with the judge, in three runs of the same test: 18, 19, then 18 out of 22 for
+the RAG of 1000, and 19, 16, then 19 out of 22 for the one of 2000. The judge's score moves by a few
+points from one run to the next, so a difference of one or two points says little. Question 7 got
+2 at both sizes each time: the model said that the excerpts did not contain the answer, although it
+always got 5. Question 3 got 1 at both sizes each time: the article that answers was never in the
+excerpts.
 
 **Look at questions 3 and 7 side by side.** With pieces of 1000, the chatbot said "I don't know" to
 both. For question 7, this is right: the answer exists nowhere. For question 3, the answer is in the
@@ -858,7 +859,10 @@ your test set shows the difference, because it says that question 3 has an answe
 
 Why did it not invent an answer to question 7? Its fixed instructions say: *If the information is
 not in the excerpts you were given, say "I don't know".* We did not measure this chatbot without
-this rule.
+this rule. Open WebUI also adds its own text around the excerpts. In the first two runs, that text
+said to answer from the model's own knowledge, and the model still followed the chatbot's rule.
+With the next image of the Codespace, that text says "say that you don't know" too: the third run
+used it.
 
 > 💡 **Tip.** **Checkpoint**: questions 3, 7 and 10 are scored in columns B and RAG, and you can name
 > one question where the pieces made the difference.
