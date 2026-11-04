@@ -70,10 +70,12 @@ only if both columns are complete), and the costs.
 ## 7. Closing (10 min)
 
 1. When is a RAG a good choice? What failure does it hide?
-2. `workshop-save` → right-click on `my-work.zip` → **Download...**. Bring it to [workshop 3](https://github.com/Youth-AI-Lab/yal-workshop-search). If your
+2. Terminal 2: `openwebui chatbot --name "<your chatbot>" --rag` → in Open WebUI, choose
+   **<your chatbot> chatbot (RAG)**, ask `Who are you?`, then your question 12.
+3. `workshop-save` → right-click on `my-work.zip` → **Download...**. Bring it to [workshop 3](https://github.com/Youth-AI-Lab/yal-workshop-search). If your
    computer already has one, the new one may be called `my-work (1).zip`: bring the newest, and
    next time type its exact name between quotes after `--from`.
-3. Exit card: three answers, alone.
+4. Exit card: three answers, alone.
 
 **Leave a conversation:** `Ctrl+C` twice. **Copy / paste in the terminal:** `Ctrl+Shift+C` /
 `Ctrl+Shift+V` (`Cmd+C` / `Cmd+V` on a Mac). **Never make port 3000 public.**

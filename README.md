@@ -841,9 +841,10 @@ all of it again, but at a lower price.
 
 > ℹ️ **Note.** The two columns do not use the same instructions. Column B uses your `AGENTS.md`.
 > The chatbot "Wildfire RAG (workshop kit)" does not read it: it has fixed instructions, the rules
-> of Feurisson (`examples/AGENTS.feurisson.md`) adapted to excerpts. If your `AGENTS.md` is very
-> different from Feurisson, part of a difference can come from the instructions, not from the
-> pieces.
+> of Feurisson (`examples/AGENTS.feurisson.md`) adapted to excerpts. Open WebUI also puts its own
+> text around the excerpts ([Part 4, step 4](#one-question-from-start-to-end)), which says to answer
+> "I don't know" when they do not hold the answer. If your `AGENTS.md` is very different from
+> Feurisson, part of a difference can come from the instructions, not from the pieces.
 
 What we measured, with the judge, in three runs of the same test: 18, 19, then 18 out of 22 for
 the RAG of 1000, and 19, 16, then 19 out of 22 for the one of 2000. The judge's score moves by a few
@@ -859,10 +860,11 @@ your test set shows the difference, because it says that question 3 has an answe
 
 Why did it not invent an answer to question 7? Its fixed instructions say: *If the information is
 not in the excerpts you were given, say "I don't know".* We did not measure this chatbot without
-this rule. Open WebUI also adds its own text around the excerpts. In the first two runs, that text
-said to answer from the model's own knowledge, and the model still followed the chatbot's rule.
-With the next image of the Codespace, that text says "say that you don't know" too: the third run
-used it.
+this rule. Open WebUI also adds its own text around the excerpts (the `### Task:` of
+[Part 4, step 4](#one-question-from-start-to-end)). In the first two runs, that text said to answer
+from the model's own knowledge, and the model still followed the chatbot's rule. In your Codespace,
+that text says "say that you don't know" too. The third run used it, and gave the same scores for
+questions 3 and 7.
 
 > 💡 **Tip.** **Checkpoint**: questions 3, 7 and 10 are scored in columns B and RAG, and you can name
 > one question where the pieces made the difference.
@@ -871,8 +873,8 @@ used it.
 
 ## Part 7 - Closing (10 min)
 
-**Goal**: decide when a RAG is a good choice, see what some chat tools do on their own, and save
-your work.
+**Goal**: decide when a RAG is a good choice, see what some chat tools do on their own, give your
+own chatbot a RAG, and save your work.
 
 ### When to choose a RAG
 
@@ -915,6 +917,31 @@ So the same *Knowledge* box can read everything, search for pieces, or miss part
 on its size and the tool. Claude Projects shows when it searches, but you do not choose. Gemini's
 help does not say how you would know that part was missed.
 
+### Your chatbot, as a RAG
+
+You have seen what a RAG gives the model. Now give your own chatbot a RAG: your instructions
+(`AGENTS.md`), your summaries and the documents, searched before each answer.
+
+1. In your second terminal, check that Open WebUI is ready (the log says `READY`), then type, with
+   the name of your chatbot:
+
+   ```bash
+   openwebui chatbot --name "Feurisson" --rag
+   ```
+
+   **What you should see:** a line `Adding "Feurisson chatbot" to Open WebUI: … knowledge files…`,
+   then, at the end, `Ready. In Open WebUI (…): New Chat, then choose "Feurisson chatbot (RAG)" in
+   the message box (bottom right).` Without `--rag`, the same command took 37 seconds for 37 files
+   in a test on a local machine; with `--rag`, and in a Codespace, we have not timed it.
+2. Open the address, **New Chat**, choose **Feurisson chatbot (RAG)** (with the name of yours), and
+   ask `Who are you?`: it answers with the identity of your `AGENTS.md`.
+3. Ask your question 12, or question 7. Before each answer, Open WebUI gives it the 5 excerpts
+   closest to your question, as for "Wildfire RAG": the same search, with your instructions.
+
+> ℹ️ **Note.** Without `--rag`, the same command makes another chatbot, **Feurisson chatbot**,
+> which searches its documents itself: you will build it in workshop 3. One Open WebUI can have
+> both, and you can ask them the same question.
+
 ### Save your work, fill in the exit card
 
 1. Type `workshop-save`, then right-click on `my-work.zip` → **Download...**. Bring it to workshop 3.
@@ -936,7 +963,7 @@ help does not say how you would know that part was missed.
 > ([local AI guide, What we measured](https://github.com/Youth-AI-Lab/yal-local-ai-guide#what-we-measured):
 > the same two failures, with local models). In the chatbot of the Open WebUI guide, by default, the
 > model decides itself when to search (a line "Explored…" or "View Result from…" above its answer);
-> here, Open WebUI searched before every answer.
+> in your chatbot of `--rag`, as in "Wildfire RAG", Open WebUI searched before every answer.
 
 **Next:** [Workshop 3 - Let it search, give it know-how](https://github.com/Youth-AI-Lab/yal-workshop-search). Open its own Codespace from that page, and
 bring `my-work.zip`.
