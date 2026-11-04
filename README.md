@@ -229,6 +229,9 @@ flowchart LR
 model can find any fact, and see a contradiction between two documents, because it has both. The
 price is paid at every message.
 
+The summaries were prepared for the series, from official documents: today you use them as they
+are. In workshop 3, you add a document of your own, and you check its summary yourselves.
+
 **Why does every message pay?** You pay a model by the token, for what it reads and for what it
 writes. In mode B, the model reads about 100,000 tokens even for a question of a few words, and the
 answer may need one sentence of one file.
@@ -304,6 +307,10 @@ Parts 2 to 6 come back to these three questions of your test set.
    the kit. Question 7 should not go down: more documents must not make it invent. On question 10,
    look for both figures in the same answer: the model can only compare them because it has both
    documents.
+
+   **Why it works.** A document can bring a fact that the model never learnt during its training:
+   a fact published after its training, or too local to be in it. This is how a chatbot stays up
+   to date without training the model again: you change its documents.
 
 > 💡 **Tip.** **Checkpoint**: questions 3, 7 and 10 are scored in column B, and you have read the
 > gauge.
@@ -882,6 +889,9 @@ your work.
 **Key insight:** a RAG does not fail loudly. When it picks the wrong pieces, the model still gets 5
 excerpts, and it may answer from them with confidence. That is why the test questions matter: they
 show the failures that the chat does not show.
+
+**This is the question of workshop 3.** What if the model looked for the pieces itself, and you
+could see where it looked, and when it found nothing? Workshop 3 tries it on the same questions.
 
 **In practice.** If your documents are few and short, put them all in the context: it is simple, and
 the model can compare them. If they no longer fit, or if each message costs too much, use a RAG, and
