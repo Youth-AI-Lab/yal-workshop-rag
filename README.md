@@ -300,8 +300,9 @@ Parts 2 to 6 come back to these three questions of your test set.
    documents.
 
    **Why it works.** A document can bring a fact that the model never learnt during its training:
-   a fact published after its training, or too local to be in it. This is how a chatbot stays up
-   to date without training the model again: you change its documents.
+   a fact published after its training, or too local to be in it. Question 1 is an example: it
+   asks for the figures of 2025, which may have been published after the model was trained. This
+   is how a chatbot stays up to date without training the model again: you change its documents.
 
 > 💡 **Tip.** **Checkpoint**: questions 3, 7 and 10 are scored in column B, and you have read the
 > gauge.
@@ -920,7 +921,9 @@ help does not say how you would know that part was missed.
 ### Your chatbot, as a RAG
 
 You have seen what a RAG gives the model. Now give your own chatbot a RAG: your instructions
-(`AGENTS.md`), your summaries and the documents, searched before each answer.
+(`AGENTS.md`), your summaries and the documents, searched before each answer. Workshop 1 gave it
+its *Instructions*, this workshop gives it its *Knowledge*: with both, you have a chatbot that you
+can already use.
 
 1. In your second terminal, check that Open WebUI is ready (the log says `READY`), then type, with
    the name of your chatbot:
