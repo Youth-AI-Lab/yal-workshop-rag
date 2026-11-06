@@ -129,8 +129,9 @@ conversation with `workshop bare`, and open a second terminal.
 
 > 💡 **If your key starts with `sk-or-` (OpenRouter).** Paste it in `workshop-login`, with no option,
 > and read [SETUP.md, With an OpenRouter key](SETUP.md#with-an-openrouter-key): Open WebUI and
-> `replay RAG` use OpenRouter too. Today, Open WebUI was measured that way with Mistral Small, not with
-> the default model, DeepSeek V4 Flash (not tested). Before anything that young people wrote goes
+> `replay RAG` use OpenRouter too. With the default model, DeepSeek V4 Flash, it was tried twice, on
+> 2026-11-02 and 2026-11-05, on a laptop and not in a Codespace: `replay RAG` answered 11 questions in
+> about 50 s, and the judge, DeepSeek too, gave 15/20 (it could not read one answer) then 17/22. Open WebUI was also measured with Mistral Small. Before anything that young people wrote goes
 > through OpenRouter, read [Young people and OpenRouter](SETUP.md#young-people-and-openrouter).
 
 > ℹ️ **No Codespace?** The same repository opens on your own computer, with Docker and VS Code: see
