@@ -9,7 +9,7 @@ Full page: [README.md](README.md). Setup and common problems: [SETUP.md](SETUP.m
 | **1** | Honest but not enough: "I don't know" although the answer exists, no source, or partly right. |
 | **0** | Wrong or invented. |
 
-## 1. Welcome (20 min)
+## 1. Welcome (25 min)
 
 1. Idle timeout not set yet on this account? First: [SETUP.md, step 1](SETUP.md#step-1---let-the-codespace-wait-for-you).
 2. Open the Codespace: **https://codespaces.new/Youth-AI-Lab/yal-workshop-rag** → **Create codespace**.
@@ -20,11 +20,14 @@ Full page: [README.md](README.md). Setup and common problems: [SETUP.md](SETUP.m
    between quotes). Terminal 1: `workshop-start 2 --from my-work.zip` → check the `saved on` date
    (no save: `workshop-start 2`, and Feurisson becomes your system prompt).
 5. Open WebUI now starts in the background (about 4 to 5 minutes the first time): go on with
-   Part 2. If `workshop-start` says `Open WebUI is not started`, do what it says. To follow it,
+   step 6. If `workshop-start` says `Open WebUI is not started`, do what it says. To follow it,
    terminal 2: `tail -f .workshop/openwebui-start.log`. It must say `READY` before Part 4.
    `Ctrl+C` stops following, not Open WebUI. Type the other commands in terminal 1.
-6. Row 12 of `test-questions.md` still empty? Write it now (its section **Question 12: your
-   territory**), then `replay bare 12`, `replay A 12`, `score bare 12`, `score A 12`.
+6. **Question 12 (5 min).** Open `test-questions.md`, read its section **Question 12: your
+   territory**. In row 12, write the question, the expected answer and the address of the official
+   page. Then `replay bare 12`, `replay A 12`, `score bare 12 --blind`, `score A 12 --blind`
+   (your score first, then the judge's). With row 12, a complete column is out of 24. Row 12
+   already written in workshop 1? Go on.
 
 ## 2. Everything in the context (15 min)
 

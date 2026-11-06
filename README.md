@@ -16,7 +16,7 @@
 > [step 1 of SETUP.md](SETUP.md#step-1---let-the-codespace-wait-for-you) (1 minute).
 >
 > This link creates your own copy of this repository, in VS Code running in your browser. Nothing
-> to install. The detailed steps are in [Part 1](#part-1---welcome-20-min).
+> to install. The detailed steps are in [Part 1](#part-1---welcome-25-min).
 
 > 📚 **The slides of the facilitator:** https://youth-ai-lab.github.io/yal-workshop/2/ (the same
 > words as this page). **The short version** of this page, on one page: [sheet.md](sheet.md). The
@@ -25,7 +25,7 @@
 ### Contents
 
 - [Goals of the session](#goals-of-the-session)
-- [Part 1 - Welcome (20 min)](#part-1---welcome-20-min)
+- [Part 1 - Welcome (25 min)](#part-1---welcome-25-min)
 - [Part 2 - Everything in the context (★, 15 min)](#part-2---everything-in-the-context--15-min)
 - [Part 3 - Unplugged: be the search engine (★, 15 min)](#part-3---unplugged-be-the-search-engine--15-min)
 - [Part 4 - Pieces and embeddings (★★, 20 min)](#part-4---pieces-and-embeddings--20-min)
@@ -59,8 +59,8 @@ pieces it picks. This is called **RAG** (*Retrieval-Augmented Generation*).
 | **Analyse** | 5-6 | Show, on a question, how the size of the pieces and their number change what the model can see, and compare a RAG with "everything in the context" on cost and answers. | `query`, `RAG` |
 | **Evaluate** | 7 | Say when a RAG is a good choice, and what failure it hides: it always gives something. | - |
 
-All session long, you go on testing your chatbot with the same questions: today, columns
-B and RAG of your score sheet.
+All session long, you go on testing your chatbot with the same questions: today, row 12 of
+columns Bare and A, then columns B and RAG of your score sheet.
 
 ### Why this approach?
 
@@ -111,11 +111,11 @@ All of these are in your Codespace, in the file list on the left:
 
 ---
 
-## Part 1 - Welcome (20 min)
+## Part 1 - Welcome (25 min)
 
 **Goal**: open the Codespace of this workshop, bring back your work, and let Open WebUI prepare
 its two knowledge bases (the documents, cut into pieces and ready for a search) in the background
-while you work.
+while you work. Then write your own test question: question 12.
 
 ### Step 1 - Open your Codespace and save your key
 
@@ -177,17 +177,47 @@ Parts 2 and 3 do not use Open WebUI.
    The last line is `READY: Open WebUI is ready, with the two sizes.` when it is done. Press
    **Ctrl+C** to stop following: Open WebUI keeps running.
 
-> 💡 **Tip.** Row 12 of `test-questions.md` still empty? Follow its section **Question 12: your
-> territory** now: write the question, and the expected answer with its source. Then type
-> `replay bare 12` and `replay A 12`, and score them with `score bare 12` and `score A 12`.
-
 > 🚫 **Warning.** Open WebUI is reached through **port 3000** of your Codespace: a numbered door,
 > listed in the **Ports** tab next to the terminal. It is private: only you can open it. **Never
 > make port 3000 public** (Ports tab, right-click on 3000, Port Visibility). This Open WebUI has no
 > accounts: anyone with the link could use your key.
 
-> 💡 **Tip.** **Checkpoint**: `Key OK`, `Ready for workshop 2`, and the log of Open WebUI (the file
-> where it notes what it is doing) growing in the second terminal.
+### Step 3 - Write your question 12 (5 min)
+
+In workshop 1, you tested your chatbot with the 11 questions of the kit. Question 12 is **yours**:
+a question about the territory where you work with young people. It tests your chatbot on a fact
+you know well, and it makes the test your own. In workshop 3, you will add its page to the
+documents of your chatbot.
+
+1. Open `test-questions.md` and read its section **Question 12: your territory**.
+2. In row 12, write the question, the expected answer, and the address of the official page where
+   you found the answer (its source). Write in the normal editor: you cannot type in the preview.
+3. Replay question 12 with the model alone, then with your instructions:
+
+   ```bash
+   replay bare 12
+   replay A 12
+   ```
+
+4. Score the two answers **blind**, as in workshop 1: you type your score first, then the judge
+   shows its own.
+
+   ```bash
+   score bare 12 --blind
+   score A 12 --blind
+   ```
+
+   Today, no mode of your chatbot has your page: an honest "I don't know" gets a 1.
+
+> ℹ️ **Note.** With question 12, each column of `scores.md` has 12 questions: a complete column is
+> now scored out of 24. You already wrote row 12 in workshop 1? Go on to Part 2.
+
+> ⚠️ **Important.** Do not change question 12 once you have scored it: write a new question only if
+> you also clear its row in `scores.md`.
+
+> 💡 **Tip.** **Checkpoint**: `Key OK`, `Ready for workshop 2`, the log of Open WebUI (the file
+> where it notes what it is doing) growing in the second terminal, and row 12 written and scored in
+> columns Bare and A.
 
 ---
 
